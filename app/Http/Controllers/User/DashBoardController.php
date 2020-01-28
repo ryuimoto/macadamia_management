@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Libraries\LoggedInUser;
 
 class DashBoardController extends Controller
 {
@@ -14,6 +16,10 @@ class DashBoardController extends Controller
 
     public function index()
     {
-        return view('user.dashboard');
+        $username = new LoggedInUser;
+
+        return view('user.dashboard')->with([
+            'username' => $username->user('user')->name,
+        ]);
     }
 }
