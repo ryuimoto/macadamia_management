@@ -54,7 +54,7 @@
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <a href="#" class="auth-link text-black">Forgot password?</a>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> アカウントをお持ちでない方はこちらへ <a href="register.html" class="text-primary"><br>アカウント作成</a>
+                  <div class="text-center mt-4 font-weight-light"> アカウントをお持ちでない方はこちらへ <a href="{{ route('user.register') }}" class="text-primary"><br>アカウント作成</a>
                   </div>
                 </form>
               </div>
