@@ -30,26 +30,48 @@
                   <h2>MacadamiaManagement</h2>
                 </div>
                 <h4>登録フォーム</h4>
-                <form class="pt-3">
+                <form method="POST" class="pt-3" name="form1" action="{{ route('user.register') }}">
+                  @csrf
+                  
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="名前">
+                    @if ($errors->has('name'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                      </span>
+                    @endif
+                    <input type="text" name="name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="名前">
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="メールアドレス">
+                    @if ($errors->has('email'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                    @endif
+                    <input type="email" name="email" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="メールアドレス">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="パスワード">
+                    @if ($errors->has('password'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                      </span>
+                    @endif
+                    <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="パスワード">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="パスワードの確認">
+                    @if ($errors->has('password_confirmation'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                      </span>
+                    @endif
+                    <input type="password" name="password_confirmation" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="パスワードの確認">
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">ログイン</a>
+                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="javascript:form1.submit()">アカウント作成</a>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <a href="#" class="auth-link text-black">Forgot password?</a>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> アカウントをお持ちの方はこちらへ <a href="register.html" class="text-primary"><br>ログインする</a>
+                  <div class="text-center mt-4 font-weight-light"> アカウントをお持ちの方はこちらへ <a href="" class="text-primary"><br>ログインする</a>
                   </div>
                 </form>
               </div>
