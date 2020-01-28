@@ -24,8 +24,8 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
     Route::get('login','User\Auth\LoginController@showLoginForm')->name('user.login');
     Route::post('login','User\Auth\LoginController@login');
 
-    // Route::get('logout','User\Auth\LoginController@logout');
-    // Route::post('logout','User\Auth\LoginController@logout')->name('user.logout');
+    Route::get('logout','User\Auth\LoginController@logout');
+    Route::post('logout','User\Auth\LoginController@logout')->name('user.logout');
 
     Route::get('register','User\Auth\RegisterController@showRegistrationForm')->name('user.register');
     Route::post('register','User\Auth\RegisterController@register');
