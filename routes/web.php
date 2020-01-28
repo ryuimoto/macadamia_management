@@ -32,6 +32,8 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
 
     Route::middleware('auth:user')->group(function(){
         Route::get('/dashboard','User\DashBoardController@index')->name('user.dashboard');
+
+        Route::get('/shift_list','User\ShiftListController@index')->name('user.shift_list');
     });
 });
 

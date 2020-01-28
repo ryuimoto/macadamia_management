@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Libraries\LoggedInUser;
 
 class ShiftListController extends Controller
 {
@@ -14,6 +15,10 @@ class ShiftListController extends Controller
 
     public function index()
     {
-        return view('user.shift_list');
+        $username = new LoggedInUser;
+
+        return view('user.shift_list')->with([
+            'username' => $username->user('user')->name,
+        ]);
     }
 }
