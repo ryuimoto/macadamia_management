@@ -30,15 +30,26 @@
                   <h2>MacadamiaManagement</h2>
                 </div>
                 <h4>ログインフォーム</h4>
-                <form class="pt-3">
+                <form class="pt-3" method="POST" name="form1" action="{{ route('user.login') }}">
+                  @csrf
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="名前">
+                    @if ($errors->has('email'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                    @endif
+                    <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="メールアドレス">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="パスワード">
+                    @if ($errors->has('password'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                      </span>
+                    @endif
+                    <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="パスワード">
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">ログイン</a>
+                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="javascript:form1.submit()">ログイン</a>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <a href="#" class="auth-link text-black">Forgot password?</a>

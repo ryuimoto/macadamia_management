@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // ユーザー側
 Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
     Route::get('login','User\Auth\LoginController@showLoginForm')->name('user.login');
-    // Route::post('login','User\Auth\LoginController@login');
+    Route::post('login','User\Auth\LoginController@login');
 
     // Route::get('logout','User\Auth\LoginController@logout');
     // Route::post('logout','User\Auth\LoginController@logout')->name('user.logout');
@@ -33,7 +33,6 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
     Route::middleware('auth:user')->group(function(){
         Route::get('/dashboard','User\DashBoardController@index')->name('user.dashboard');
     });
- 
 });
 
 // 管理側

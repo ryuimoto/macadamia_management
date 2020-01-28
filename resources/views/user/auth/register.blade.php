@@ -32,7 +32,6 @@
                 <h4>登録フォーム</h4>
                 <form method="POST" class="pt-3" name="form1" action="{{ route('user.register') }}">
                   @csrf
-                  
                   <div class="form-group">
                     @if ($errors->has('name'))
                       <span class="help-block">
@@ -71,7 +70,7 @@
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <a href="#" class="auth-link text-black">Forgot password?</a>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> アカウントをお持ちの方はこちらへ <a href="" class="text-primary"><br>ログインする</a>
+                  <div class="text-center mt-4 font-weight-light"> アカウントをお持ちの方はこちらへ <a href="{{ route('user.login') }}" class="text-primary"><br>ログインする</a>
                   </div>
                 </form>
               </div>
