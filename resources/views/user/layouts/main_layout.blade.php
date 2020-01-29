@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
+    @yield('fullcalendar_library')
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/vendors/css/vendor.bundle.base.css') }}">
@@ -20,7 +21,6 @@
   </head>
   <body>
     <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <h3 class="navbar-brand brand-logo">M|Management</h3><br>
@@ -84,15 +84,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="{{ route('user.dashboard') }}">
                 <span class="menu-title">ダッシュボード</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" href="{{ route('user.shift_list') }}">
                 <span class="menu-title">シフト一覧</span>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
@@ -128,18 +128,8 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/misc.js') }}"></script>
     <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/dashboard.js') }}"></script>
-    <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/todolist.js') }}"></script>
-    <!-- End custom js for this page -->
+    @yield('plugin_js')
   </body>
 </html>

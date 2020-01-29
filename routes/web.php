@@ -46,6 +46,5 @@ Route::prefix('admin56765467654sgegmp68786')->group(function(){
 
     Route::get('register','Admin\Auth\RegisterController@showRegistrationForm')->name('admin.register');
     // Route::post('register','Admin\Auth\RegisterController@register');
-
   
 });

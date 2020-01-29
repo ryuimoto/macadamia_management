@@ -20,5 +20,6 @@ class ShiftListController extends Controller
         return view('user.shift_list')->with([
             'username' => $username->user('user')->name,
         ]);
+
     }
 }

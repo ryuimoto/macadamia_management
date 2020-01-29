@@ -1,6 +1,6 @@
 @extends('user.layouts.main_layout')
 @section('title')
-  MM管理画面|ダッシュボード
+  MM|ダッシュボード
 @endsection
 @section('contents')
   <div class="content-wrapper">
@@ -328,4 +328,17 @@
       </div>
     </div>
   </div>
+@endsection
+@section('plugin_js')
+  <!-- Plugin js for this page -->
+  <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/vendors/chart.js/Chart.min.js') }}"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/off-canvas.js') }}"></script>
+  <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/hoverable-collapse.js') }}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page -->
+  <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/dashboard.js') }}"></script>
+  <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/todolist.js') }}"></script>
+  <!-- End custom js for this page -->
 @endsection
