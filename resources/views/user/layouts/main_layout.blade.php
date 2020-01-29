@@ -90,16 +90,17 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('user.shift_list') }}">
-                <span class="menu-title">シフト一覧</span>
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">シフト関連</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-book-open-variant"></i>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/icons/mdi.html">
-                <span class="menu-title">シフト入力</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('user.shift_list') }}">一覧</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">作成</a></li>
+                </ul>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/forms/basic_elements.html">

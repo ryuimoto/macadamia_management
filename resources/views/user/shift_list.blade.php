@@ -20,7 +20,6 @@
             var date_end = new Date(date_now.getFullYear(), date_now.getMonth(), 1);
             var days = ["日", "月", "火", "水", "木", "金", "土"];
             date_end.setMonth(date_end.getMonth()+12);
-            
             var calendar = new FullCalendar.Calendar(calendarEl, {
             local: 'ja',
 
@@ -41,7 +40,7 @@
             selectMirror: true,
             select: function(arg) {
                 var title = prompt('Event Title:');
-            //  console.log(arg.start);
+             //  console.log(arg.start);
 
                 if (title) {
                 calendar.addEvent({
@@ -117,6 +116,10 @@
             //曜日のテキストを書き換えます（日〜土）
             columnHeaderText: function(obj) {
                 return days[obj.getDay()];
+            },
+            //イベントのクリック時の処理を加えます
+            eventClick: function(obj) {
+                alert(obj.event.title);
             },
             });
             calendar.render();
