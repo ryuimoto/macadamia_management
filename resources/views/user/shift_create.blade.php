@@ -12,7 +12,7 @@
     <script src='{{ asset('library/packages/timegrid/main.js') }}'></script>
     {{-- 日本語化ファイル --}}
     <script src='{{ asset('library/packages/core/locales/ja.js') }}'></script>
-    <script content="{{ csrf_token() }}">
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var date_now = new Date();
@@ -50,12 +50,21 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        type: 'POST',
                         url: "{{ route('user.shift_create') }}",
-                        data:{
-                            id : id
-                        },
+                        type: 'POST',
+                        data: 12345,
                     })
+                    // Ajaxリクエストが成功した場合
+                    .done(function(data) {
+                        // $('.delete_message').text(data.responseJSON);
+                        console.log(data);
+                        // console.log(data);
+
+                    })
+                    // Ajaxリクエストが失敗した場合
+                    .fail(function() {
+                        alert("登録に失敗しました");
+                    });
                     
                 }
 

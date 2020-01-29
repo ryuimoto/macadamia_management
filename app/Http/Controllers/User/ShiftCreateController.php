@@ -24,7 +24,9 @@ class ShiftCreateController extends Controller
 
     public function create(Request $request)
     {
-        dd($request);
+        // dd($request);
+
+        return $request;
     }
 
 }
