@@ -34,6 +34,14 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::get('/dashboard','User\DashBoardController@index')->name('user.dashboard');
 
         Route::get('/shift_list','User\ShiftListController@index')->name('user.shift_list');
+
+        Route::get('/registration_pattern','User\ShiftListController@index')->name('user.registration_pattern');
+
+        Route::get('/shift_create','User\ShiftCreateController@index')->name('user.shift_create');
+        Route::post('/shift_create','User\ShiftCreateController@create');
+
+        Route::get('/monthly_attendance_record','User\MonthlyAttendanceRecordController@index')->name('user.monthly_attandance_record');
+
     });
 });
 
