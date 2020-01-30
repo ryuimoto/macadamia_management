@@ -53,10 +53,10 @@
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('user.acount_edit') }}">
                   <i class="mdi mdi-cached mr-2 text-success"></i> アカウント編集 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('user.logout') }}">
                   <i class="mdi mdi-logout mr-2 text-primary"></i> ログアウト </a>
               </div>
             </li>

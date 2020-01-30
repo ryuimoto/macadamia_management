@@ -41,6 +41,8 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::post('/shift_create','User\ShiftCreateController@create');
 
         Route::get('/monthly_attendance_record','User\MonthlyAttendanceRecordController@index')->name('user.monthly_attandance_record');
+        
+        Route::get('/acount_edit','User\AcountEditController@index')->name('user.acount_edit');
 
     });
 });
