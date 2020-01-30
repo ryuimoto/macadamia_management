@@ -4,46 +4,31 @@
 @endsection
 @section('contents')
     <div class="content-wrapper">
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-8 offset-md-2 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Basic form elements</h4>
-                <p class="card-description"> Basic form elements </p>
+                <div class="row">
+                    <h3>　月次出勤簿</h3>
+                </div>
+                <div class="row">
+                    <a href=""><i class="mdi mdi-chevron-double-left" style="font-size:28px;"></i></a>
+                    <h3>2010年9月10日</h3>
+                    <a href=""><i class="mdi mdi-chevron-double-right" style="font-size:28px;"></i></a>
+                </div>
+                <p class="card-description">翌月27日になると自動的に担当者に送られます。 </p>
                 <form class="forms-sample">
-                  <div class="form-group">
-                    <label for="exampleInputName1">Name</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="exampleInputPassword4">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleSelectGender">Gender</label>
-                    <select class="form-control" id="exampleSelectGender">
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>File upload</label>
-                    <input type="file" name="img[]" class="file-upload-default">
-                    <div class="input-group col-xs-12">
-                      <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                      <span class="input-group-append">
-                        <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                      </span>
+                    <div class="form-group row">
+                      <label for="exampleInputUsername2" class="col-sm-3 offset-md-2 col-form-label">労働日数</label>
+                      <div class="col-sm-7">
+                          <h2>100日</h2>
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputCity1">City</label>
-                    <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleTextarea1">Textarea</label>
-                    <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-                  </div>
+                    <div class="form-group row">
+                      <label for="exampleInputEmail2" class="col-sm-3 offset-md-2 col-form-label">実労働時間</label>
+                      <div class="col-sm-7">
+                        <h2>100時間</h2>
+                      </div>
+                    </div>
                 </form>
               </div>
             </div>
@@ -57,26 +42,20 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th> # </th>
-                                <th> First name </th>
-                                <th> Progress </th>
-                                <th> Amount </th>
-                                <th> Deadline </th>
+                                <th> 出勤日 </th>
+                                <th> 出勤時間 </th>
+                                <th> 退勤時間 </th>
+                                <th> 労働時間 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td> 1 </td>
-                                <td> Herman Beck </td>
+                                <td> 1/2 </td>
+                                <td><input type="text" class="form-control form-control-sm"></td>
                                 <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar"
-                                            style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
+                                    <input type="text" class="form-control form-control-sm">
                                 </td>
-                                <td> $ 77.99 </td>
-                                <td> May 15, 2015 </td>
+                                <td> 100時間 </td>
                             </tr>
                             <tr>
                                 <td> 2 </td>
@@ -89,7 +68,6 @@
                                     </div>
                                 </td>
                                 <td> $245.30 </td>
-                                <td> July 1, 2015 </td>
                             </tr>
                             <tr>
                                 <td> 3 </td>
@@ -102,7 +80,6 @@
                                     </div>
                                 </td>
                                 <td> $138.00 </td>
-                                <td> Apr 12, 2015 </td>
                             </tr>
                             <tr>
                                 <td> 4 </td>
@@ -115,7 +92,6 @@
                                     </div>
                                 </td>
                                 <td> $ 77.99 </td>
-                                <td> May 15, 2015 </td>
                             </tr>
                             <tr>
                                 <td> 5 </td>
@@ -128,7 +104,6 @@
                                     </div>
                                 </td>
                                 <td> $ 160.25 </td>
-                                <td> May 03, 2015 </td>
                             </tr>
                             <tr>
                                 <td> 6 </td>
@@ -141,7 +116,6 @@
                                     </div>
                                 </td>
                                 <td> $ 123.21 </td>
-                                <td> April 05, 2015 </td>
                             </tr>
                             <tr>
                                 <td> 7 </td>
@@ -154,7 +128,6 @@
                                     </div>
                                 </td>
                                 <td> $ 150.00 </td>
-                                <td> June 16, 2015 </td>
                             </tr>
                         </tbody>
                     </table>

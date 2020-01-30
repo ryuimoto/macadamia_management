@@ -44,7 +44,8 @@
       <div class="col-12 grid-margin">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">本日(●●年月○日)　出勤予定のスタッフ</h4>
+            <h4 class="card-title">本日出勤予定のスタッフ</h4>
+            <small class="text-muted"> ●●月●●日 </small>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -52,8 +53,6 @@
                     <th> スタッフ名 </th>
                     <th> 出勤時間 </th>
                     <th> 退勤時間 </th>
-                    <th> Last Update </th>
-                    <th> Tracking ID </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,8 +63,6 @@
                     <td>
                       <label class="badge badge-gradient-success">DONE</label>
                     </td>
-                    <td> Dec 5, 2017 </td>
-                    <td> WD-12345 </td>
                   </tr>
                   <tr>
                     <td>
@@ -74,8 +71,6 @@
                     <td>
                       <label class="badge badge-gradient-warning">PROGRESS</label>
                     </td>
-                    <td> Dec 12, 2017 </td>
-                    <td> WD-12346 </td>
                   </tr>
                   <tr>
                     <td>
@@ -84,8 +79,6 @@
                     <td>
                       <label class="badge badge-gradient-info">ON HOLD</label>
                     </td>
-                    <td> Dec 16, 2017 </td>
-                    <td> WD-12347 </td>
                   </tr>
                   <tr>
                     <td>
@@ -94,8 +87,6 @@
                     <td>
                       <label class="badge badge-gradient-danger">REJECTED</label>
                     </td>
-                    <td> Dec 3, 2017 </td>
-                    <td> WD-12348 </td>
                   </tr>
                 </tbody>
               </table>
