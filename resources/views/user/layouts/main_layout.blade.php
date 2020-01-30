@@ -100,7 +100,7 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{ route('user.registration_pattern') }}">パターンを登録</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('user.shift_list') }}">一覧</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('user.shift_list') }}">シフト表</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('user.shift_create') }}">作成</a></li>
                 </ul>
               </div>
