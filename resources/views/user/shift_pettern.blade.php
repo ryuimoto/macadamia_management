@@ -9,14 +9,15 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">新規登録</h4>
-            <form class="form-sample">
+            <form class="form-sample" method="POST" action="{{ route('user.registration_pattern') }}">
+              @csrf
               <p class="card-description"> 何個でも登録できます </p>
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">パターン名</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" />
+                      <input type="text" name="name" class="form-control" />
                     </div>
                   </div>
                 </div>
@@ -26,7 +27,7 @@
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">出勤時間</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" />
+                      <input type="time" name="attendance" class="form-control" />
                     </div>
                   </div>
                 </div>
@@ -34,15 +35,49 @@
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">退勤時間</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" />
+                      <input type="time" name="leaving" class="form-control" />
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">出勤曜日</label>
+                    <div class="col-sm-8">
+                      {{-- <input type="time" name="attendance" class="form-control" /> --}}
+                      <select class="form-control form-control-sm" id="exampleFormControlSelect3">
+                        <option>週休2日</option>
+                        <option></option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">※オプションを指定する場合は曜日も選択してください</label>
+                    <div class="col-sm-8">
+                      {{-- <input type="time" name="attendance" class="form-control" /> --}}
+                      <select class="form-control form-control-sm" id="exampleFormControlSelect3">
+                        <option>週休2日</option>
+                        <option></option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="row">
                 <div class="col-md-3 offset-md-9">
                   <div class="form-group row">
-                    <button type="button" class="btn btn-inverse-primary btn-fw">登録</button>
+                    <button type="submit" class="btn btn-inverse-primary btn-fw">登録</button>
                   </div>
                 </div>
               </div>

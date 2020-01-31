@@ -32,19 +32,19 @@
               <div class="form-group row">
                 <div class="col-sm-12">
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">毎月27日に労働時間を確認するよう促す</label>
-                        <div class="col-sm-4">
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> 通知する </label>
-                          </div>
+                      <label class="col-sm-3 col-form-label">毎月27日に労働時間を確認する</label>
+                      <div class="col-sm-4">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value=""> 通知する </label>
                         </div>
-                        <div class="col-sm-5">
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> 通知しない </label>
-                          </div>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option3"> 通知しない </label>
                         </div>
+                      </div>
                     </div>
                 </div>
               </div>
