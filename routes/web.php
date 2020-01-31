@@ -44,6 +44,9 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         
         Route::get('/acount_edit','User\AcountEditController@index')->name('user.acount_edit');
 
+        Route::get('/setting','User\SettingController@index')->name('user.setting');
+
+
     });
 });
 
