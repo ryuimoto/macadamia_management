@@ -71,8 +71,8 @@
                         <tr>
                           <td> {{ $pettern->id }} </td>
                           <td><div class="col-sm-12"><input type="text" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->name }}"></div></td>
-                          <td><div class="col-sm-12"><input type="text" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->attendance }}"></div></td>
-                          <td><div class="col-sm-12"><input type="text" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->leaving }}"></div></td>
+                          <td><div class="col-sm-12"><input type="time" min="06:00" max="00:00" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->attendance }}"></div></td>
+                          <td><div class="col-sm-12"><input type="time" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->leaving }}"></div></td>
                           <td>
                             <button type="button" class="btn btn-gradient-primary btn-fw">編集</button>
                             <button type="button" class="btn btn-gradient-danger btn-fw">削除</button>

@@ -15,32 +15,33 @@ class ShiftPetternsSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'テスト1',
-                'attendance' => new DateTime(),
-                'leaving' => new DateTime(),
+                // 'attendance' => new DateTime(),
+                'attendance' => ('10:00'),
+                'leaving' => ('18:00'),
             ],
             [
                 'user_id' => 1,
                 'name' => 'テスト2',
-                'attendance' => new DateTime(),
-                'leaving' => new DateTime(),
+                'attendance' => ('10:00'),
+                'leaving' => ('18:00'),
             ],
             [
                 'user_id' => 1,
                 'name' => 'テスト3',
-                'attendance' => new DateTime(),
-                'leaving' => new DateTime(),
+                'attendance' => ('10:00'),
+                'leaving' => ('18:00'),
             ],
             [
                 'user_id' => 1,
                 'name' => 'テスト3',
-                'attendance' => new DateTime(),
-                'leaving' => new DateTime(),
+                'attendance' => ('10:00'),
+                'leaving' => ('18:00'),
             ],
             [
                 'user_id' => 1,
                 'name' => 'テスト4',
-                'attendance' => new DateTime(),
-                'leaving' => new DateTime(),
+                'attendance' => ('10:00'),
+                'leaving' => ('18:00'),
             ],
         ]);
     }
