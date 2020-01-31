@@ -16,6 +16,7 @@ class CreateShiftPetternsTable extends Migration
         Schema::create('shift_petterns', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
+            $table->string('name');
             $table->time('attendance');
             $table->time('leaving');
             $table->timestamps();

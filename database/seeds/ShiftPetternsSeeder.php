@@ -12,9 +12,36 @@ class ShiftPetternsSeeder extends Seeder
     public function run()
     {
         DB::table('shift_petterns')->insert([
-            'user_id' => 1,
-            'attendance' => new DateTime(),
-            'leaving' => new DateTime(),
+            [
+                'user_id' => 1,
+                'name' => 'テスト1',
+                'attendance' => new DateTime(),
+                'leaving' => new DateTime(),
+            ],
+            [
+                'user_id' => 1,
+                'name' => 'テスト2',
+                'attendance' => new DateTime(),
+                'leaving' => new DateTime(),
+            ],
+            [
+                'user_id' => 1,
+                'name' => 'テスト3',
+                'attendance' => new DateTime(),
+                'leaving' => new DateTime(),
+            ],
+            [
+                'user_id' => 1,
+                'name' => 'テスト3',
+                'attendance' => new DateTime(),
+                'leaving' => new DateTime(),
+            ],
+            [
+                'user_id' => 1,
+                'name' => 'テスト4',
+                'attendance' => new DateTime(),
+                'leaving' => new DateTime(),
+            ],
         ]);
     }
 }
