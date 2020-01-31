@@ -13,8 +13,8 @@ class ShiftPetternsSeeder extends Seeder
     {
         DB::table('shift_petterns')->insert([
             'user_id' => 1,
-            'attendance' => time("11:00:00"),
-            'leaving' => time("18:00:00"),
+            'attendance' => new DateTime(),
+            'leaving' => new DateTime(),
         ]);
     }
 }
