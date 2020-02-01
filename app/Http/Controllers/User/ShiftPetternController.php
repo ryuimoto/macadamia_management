@@ -31,6 +31,8 @@ class ShiftPetternController extends Controller
 
     public function registration(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        
     }
 }

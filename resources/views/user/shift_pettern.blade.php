@@ -41,40 +41,6 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">出勤曜日</label>
-                    <div class="col-sm-8">
-                      {{-- <input type="time" name="attendance" class="form-control" /> --}}
-                      <select class="form-control form-control-sm" id="exampleFormControlSelect3">
-                        <option>週休2日</option>
-                        <option></option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>  
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">※オプションを指定する場合は曜日も選択してください</label>
-                    <div class="col-sm-8">
-                      {{-- <input type="time" name="attendance" class="form-control" /> --}}
-                      <select class="form-control form-control-sm" id="exampleFormControlSelect3">
-                        <option>週休2日</option>
-                        <option></option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>  
-              <div class="row">
                 <div class="col-md-3 offset-md-9">
                   <div class="form-group row">
                     <button type="submit" class="btn btn-inverse-primary btn-fw">登録</button>
