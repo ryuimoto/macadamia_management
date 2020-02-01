@@ -21,7 +21,6 @@ class DashBoardController extends Controller
         return view('user.dashboard')->with([
             'username' => $username->user('user')->name,
         ]);
-        
-        // return view('error.errors_404');
+
     }
 }
