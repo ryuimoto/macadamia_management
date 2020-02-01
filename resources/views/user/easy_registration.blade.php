@@ -4,12 +4,21 @@
 @endsection
 @section('contents')
   <div class="content-wrapper">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+      </div>
+    @endif
     <div class="row">
       <div class="col-10 offset-md-1 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">簡単登録</h4>
-            <form class="form-sample" method="POST" action="{{ route('user.registration_pattern') }}">
+            <form class="form-sample" method="POST" action="{{ route('user.easy_registration') }}">
               @csrf
               <p class="card-description"> 編集や削除がある場合は「シフト」からおこなってください </p>
               <div class="row">
@@ -37,31 +46,31 @@
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> 月 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="monday"> 月 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> 火</label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="tuesday"> 火</label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> 水 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="wednesday"> 水 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> 木 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="thursday"> 木 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> 金 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="friday"> 金 </label>
                       </div>
                     </div>
                   </div>
@@ -73,13 +82,13 @@
                     <div class="col-sm-2 offset-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> 土 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="6"> 土 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> 日 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="7"> 日 </label>
                       </div>
                     </div>
                   </div>

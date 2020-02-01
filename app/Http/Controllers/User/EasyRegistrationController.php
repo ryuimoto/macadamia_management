@@ -21,4 +21,16 @@ class EasyRegistrationController extends Controller
             'username' => $username->user('user')->name,
         ]);
     }
+
+    public function registration(Request $request)
+    {
+        $request->validate([
+            'attendance' => 'nullable|required|before:leaving',
+            'leaving' => 'nullable|required',
+            'weekday' => 'required',
+        ]);
+
+        
+
+    }
 }

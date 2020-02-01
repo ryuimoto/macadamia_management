@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
             return response()->view('error.errors_500');
         } 
 
-        // return parent::render($request, $exception);
+        return parent::render($request, $exception);
     }
 
     public function unauthenticated($request, AuthenticationException $exception)

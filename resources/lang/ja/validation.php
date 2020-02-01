@@ -15,13 +15,13 @@ return [
 
     'accepted'             => ':attributeを承認してください。',
     'active_url'           => ':attributeが有効なURLではありません。',
-    'after'                => ':attributeには、:dateより後の日付を指定してください。',
+    'after'                => ':attributeには、:dateより後の時間を指定してください。',
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
     'alpha'                => ':attributeはアルファベットのみがご利用できます。',
     'alpha_dash'           => ':attributeはアルファベットとダッシュ(-)及び下線(_)がご利用できます。',
     'alpha_num'            => ':attributeはアルファベット数字がご利用できます。',
     'array'                => ':attributeは配列でなくてはなりません。',
-    'before'               => ':attributeには、:dateより前の日付をご利用ください。',
+    'before'               => ':attributeには、:dateより前の時間をご利用ください。',
     'before_or_equal'      => ':attributeには、:date以前の日付をご利用ください。',
     'between'              => [
         'numeric' => ':attributeは、:minから:maxの間で指定してください。',
@@ -145,6 +145,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'attendance' => '出勤時間',
+        'leaving' => '退勤時間',
+        'weekday' => '曜日',
+    ],
 
 ];

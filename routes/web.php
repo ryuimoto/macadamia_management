@@ -36,6 +36,7 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::get('/shift_list','User\ShiftListController@index')->name('user.shift_list');
 
         Route::get('/easy_registration','User\EasyRegistrationController@index')->name('user.easy_registration');
+        Route::post('/easy_registration','User\EasyRegistrationController@registration');
 
         Route::get('/pattern_registration','User\ShiftPetternController@index')->name('user.registration_pattern');
         Route::post('/pattern_registration','User\ShiftPetternController@registration');
