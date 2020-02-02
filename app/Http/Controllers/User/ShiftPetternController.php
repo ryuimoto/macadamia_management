@@ -70,6 +70,8 @@ class ShiftPetternController extends Controller
 
     public function deletePost($request)
     {
-        return "削除ポストです";
+        ShiftPettern::where('id', $request->id)->delete();
+
+        return back();
     }
 }
