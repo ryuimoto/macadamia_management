@@ -146,6 +146,7 @@ return [
     */
 
     'attributes' => [
+        'name' => 'パターン名',
         'attendance' => '出勤時間',
         'leaving' => '退勤時間',
         'weekday' => '曜日',

@@ -36,11 +36,13 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::get('/shift_list','User\ShiftListController@index')->name('user.shift_list');
 
         Route::get('/easy_registration','User\EasyRegistrationController@index')->name('user.easy_registration');
-        Route::post('/easy_registration','User\EasyRegistrationController@registration');
+        Route::post('/easy_registration','User\EasyRegistrationController@branchPost');
 
-        Route::get('/pattern_registration','User\ShiftPetternController@index')->name('user.registration_pattern');
-        Route::post('/pattern_registration','User\ShiftPetternController@registration');
-
+        Route::get('/shift_pettern','User\ShiftPetternController@index')->name('user.registration_pattern');
+        Route::post('/shift_pettern','User\ShiftPetternController@branchPost');
+        Route::put('/shift_pettern','User\ShiftPetternController@editPost');
+        Route::delete('/shift_pettern','User\ShiftPetternController@deletePost');
+    
         Route::get('/shift_create','User\ShiftCreateController@index')->name('user.shift_create');
         Route::post('/shift_create','User\ShiftCreateController@create');
 
@@ -49,7 +51,6 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::get('/acount_edit','User\AcountEditController@index')->name('user.acount_edit');
 
         Route::get('/setting','User\SettingController@index')->name('user.setting');
-
 
     });
 });

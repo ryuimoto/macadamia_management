@@ -22,36 +22,54 @@ class ShiftPetternController extends Controller
 
         $patterns = ShiftPettern::where('user_id',$username->user('user')->id)->get();
 
-        // dd($patterns);
-
         return view('user.shift_pettern')->with([
             'username' => $username->user('user')->name,
             'petterns' => $patterns,
         ]);
     }
 
-    public function registration(Request $request)
+    public function branchPost(Request $request)
     {
         $username = new LoggedInUser;
 
-
-        // dd($request->all());
         $request->validate([
             'name' => 'required|max:15',
-            'attendance' => 'nullable|required',
+            'attendance' => 'nullable|required|before:leaving',
             'leaving' => 'nullable|required',
         ]);
 
-        // dd($request->all());
+        if(isset($request->edit))
+        {
+            return $this->editPost($request);
+        }else if(isset($request->delete))
+        {
+            return $this->deletePost($request);
+        }else{
+            ShiftPettern::Create([
+                'user_id' => $username->user('user')->id,
+                'name' => $request->name,
+                'attendance' => $request->attendance,
+                'leaving' => $request->leaving,
+            ]);
 
-        ShiftPettern::Create([
-            'user_id' => $username->user('user')->id,
+            return back();
+        }
+    }
+
+    public function editPost(Request $request)
+    {
+        ShiftPettern::where('id',$request->id)
+        ->update([
             'name' => $request->name,
             'attendance' => $request->attendance,
             'leaving' => $request->leaving,
         ]);
 
         return back();
+    }
 
+    public function deletePost($request)
+    {
+        return "削除ポストです";
     }
 }
