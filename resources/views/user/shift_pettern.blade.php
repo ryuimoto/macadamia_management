@@ -5,6 +5,15 @@
 @section('contents')
   <div class="content-wrapper">
     <div class="row">
+      @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <p>{{ $error }}</p>
+            @endforeach
+          </ul>
+        </div>
+      @endif
       <div class="col-10 offset-md-1 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
@@ -27,7 +36,7 @@
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">出勤時間</label>
                     <div class="col-sm-8">
-                      <input type="time" name="attendance" class="form-control" />
+                      <input type="time" name="attendance" class="form-control" value="{{ old('attendance') }}" />
                     </div>
                   </div>
                 </div>
@@ -35,7 +44,7 @@
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">退勤時間</label>
                     <div class="col-sm-8">
-                      <input type="time" name="leaving" class="form-control" />
+                      <input type="time" name="leaving" class="form-control" value="{{ old('leaving') }}"/>
                     </div>
                   </div>
                 </div>

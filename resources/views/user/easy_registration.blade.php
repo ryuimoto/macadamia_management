@@ -8,7 +8,7 @@
       <div class="alert alert-danger">
           <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <p>{{ $error }}</p>
             @endforeach
           </ul>
       </div>
@@ -26,7 +26,7 @@
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">出勤時間</label>
                     <div class="col-sm-8">
-                      <input type="time" name="attendance" class="form-control" />
+                      <input type="time" name="attendance" class="form-control" value="{{ old('attendance') }}" />
                     </div>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">退勤時間</label>
                     <div class="col-sm-8">
-                      <input type="time" name="leaving" class="form-control" />
+                      <input type="time" name="leaving" class="form-control" value="{{ old('leaving') }}" />
                     </div>
                   </div>
                 </div>
@@ -46,31 +46,31 @@
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="monday"> 月 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="1"> 月 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="tuesday"> 火</label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="2"> 火</label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="wednesday"> 水 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="3"> 水 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="thursday"> 木 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="4"> 木 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="friday"> 金 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="5"> 金 </label>
                       </div>
                     </div>
                   </div>
@@ -97,14 +97,34 @@
               <div class="row">
                 <div class="col-md-3 offset-md-9">
                   <div class="form-group row">
-                    <button type="submit" class="btn btn-inverse-primary btn-fw">登録</button>
+                    <button type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#exampleModal">登録</button>
                   </div>
                 </div>
               </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">以下の日程で登録します。よろしいですか？</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>選択した項目が1ヶ月のシフトに登録されます。よろしいですか？</p>
+          <p>変更がある場合は、「シフト表」から編集してください。</p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">登録する</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          </form>
+        </div><!-- /.modal-footer -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 @endsection

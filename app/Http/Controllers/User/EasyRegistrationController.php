@@ -5,6 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
+use Carbon\Carbon;
+
+use App\Shift;
 
 class EasyRegistrationController extends Controller
 {
@@ -24,13 +27,22 @@ class EasyRegistrationController extends Controller
 
     public function registration(Request $request)
     {
-        $request->validate([
-            'attendance' => 'nullable|required|before:leaving',
-            'leaving' => 'nullable|required',
-            'weekday' => 'required',
-        ]);
+        // バリデーション　一旦外す
+        // $request->validate([
+        //     'attendance' => 'nullable|required|before:leaving',
+        //     'leaving' => 'nullable|required',
+        //     'weekday' => 'nullable|required',
+        // ]);
 
+        // $carbon = Carbon::now();
+
+        dd($request->all());
         
+        // Shift::create([
+        //     'attendance' => ,
+        //     'leaving' => ,
+        //     'date' => ,
+        // ]);        
 
     }
 }

@@ -8,6 +8,7 @@ use App\Libraries\LoggedInUser;
 
 use App\ShiftPettern;
 
+
 class ShiftPetternController extends Controller
 {
     public function __construct()
@@ -31,8 +32,26 @@ class ShiftPetternController extends Controller
 
     public function registration(Request $request)
     {
+        $username = new LoggedInUser;
+
+
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required|max:15',
+            'attendance' => 'nullable|required',
+            'leaving' => 'nullable|required',
+        ]);
+
         // dd($request->all());
 
-        
+        ShiftPettern::Create([
+            'user_id' => $username->user('user')->id,
+            'name' => $request->name,
+            'attendance' => $request->attendance,
+            'leaving' => $request->leaving,
+        ]);
+
+        return back();
+
     }
 }
