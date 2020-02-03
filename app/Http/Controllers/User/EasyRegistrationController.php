@@ -37,26 +37,17 @@ class EasyRegistrationController extends Controller
 
         for ($i = 0 ; $i <= $days; $i++) 
         {
-            $dates[] = $startOfMonth->copy()->addDays($i)->dayOfWeekIso;
+            // $dates[] = $startOfMonth->copy()->addDays($i)->dayOfWeekIso; // 1ヶ月の曜日
+            $dates[] = $startOfMonth->copy()->addDays($i)->toArray(); // 1ヶ月の日にち
         }
 
-        // return $dates;
+        dd($dates);
 
-        if(in_array((int)$request->weekday,$dates))
-        {
-            // return "曜日がヒットしました";
+      
+        // $result = array_search(1, $dates['']);
+        // return ($result);
 
-            
 
-            // Shift::create([
-            //     'user_id' => $username->user('user')->id,
-            //     'attendance' => $request->
-            // ]);
-
-        }else{
-            return "曜日がヒットしません";
-        }
-        
         // バリデーション　一旦外す
         // $request->validate([
         //     'attendance' => 'nullable|required|before:leaving',
