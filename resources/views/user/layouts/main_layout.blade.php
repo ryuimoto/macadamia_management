@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" > --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>@yield('title')</title>
     @yield('fullcalendar_library')
     <!-- plugins:css -->
@@ -102,7 +101,7 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('user.easy_registration') }}">簡単登録</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('user.easy_registration') }}">一括登録</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('user.registration_pattern') }}">パターンで登録</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('user.shift_list') }}">シフト表</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('user.shift_create') }}">作成</a></li>

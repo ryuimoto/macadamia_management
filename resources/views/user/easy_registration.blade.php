@@ -1,6 +1,6 @@
 @extends('user.layouts.main_layout')
 @section('title')
-    MM|簡単登録
+    MM|一括登録
 @endsection
 @section('contents')
   <div class="content-wrapper">
@@ -17,7 +17,7 @@
       <div class="col-10 offset-md-1 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">簡単登録</h4>
+            <h4 class="card-title">一括登録</h4>
             <form class="form-sample" method="POST" action="{{ route('user.easy_registration') }}">
               @csrf
               <p class="card-description"> 編集や削除がある場合は「シフト」からおこなってください </p>
