@@ -46,31 +46,31 @@
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="1"> 月 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="0"> 月 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="2"> 火</label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="1"> 火</label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="3"> 水 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="2"> 水 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="4"> 木 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="3"> 木 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="5"> 金 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="4"> 金 </label>
                       </div>
                     </div>
                   </div>
@@ -82,13 +82,13 @@
                     <div class="col-sm-2 offset-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="6"> 土 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="5"> 土 </label>
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" name="weekday[]" class="form-check-input" value="7"> 日 </label>
+                          <input type="checkbox" name="weekday[]" class="form-check-input" value="6"> 日 </label>
                       </div>
                     </div>
                   </div>

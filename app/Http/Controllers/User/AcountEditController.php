@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
 
+use App\User;
+
 class AcountEditController extends Controller
 {
     public function __construct()
@@ -17,8 +19,36 @@ class AcountEditController extends Controller
     {
         $username = new LoggedInUser;
 
+        $acount = User::where('id',$username->user('user')->id)->first();
+
         return view('user.acount_edit')->with([
             'username' => $username->user('user')->name,
+            'name' => $username->user('user')->name,
+            'status_id' => $acount->status_id,
+            'email' => $acount->email,
         ]);
+    }
+
+    public function edit(Request $request)
+    {
+        $username = new LoggedInUser;
+
+        $request->validate([
+            'name' => 'required',
+            'status_id' => 'required',
+            'email' => 'required',
+            'password' => 'required|string|confirmed',
+        ]);
+
+        User::where('id',$username->user('user')->id)
+        ->update([
+            'name' => $request->name,
+            'status_id' => $request->status_id,
+            'email' => $request->email,
+            'password' =>bcrypt($request->password),
+        ]);
+
+        return back();
+
     }
 }

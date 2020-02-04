@@ -150,6 +150,7 @@ return [
         'attendance' => '出勤時間',
         'leaving' => '退勤時間',
         'weekday' => '曜日',
+        'password' => 'パスワード',
     ],
 
 ];

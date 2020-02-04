@@ -49,6 +49,7 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::get('/monthly_attendance_record','User\MonthlyAttendanceRecordController@index')->name('user.monthly_attandance_record');
         
         Route::get('/acount_edit','User\AcountEditController@index')->name('user.acount_edit');
+        Route::put('/acount_edit','User\AcountEditController@edit');
 
         Route::get('/setting','User\SettingController@index')->name('user.setting');
 

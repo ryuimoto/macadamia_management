@@ -37,16 +37,23 @@ class EasyRegistrationController extends Controller
 
         for ($i = 0 ; $i <= $days; $i++) 
         {
-            // $dates[] = $startOfMonth->copy()->addDays($i)->dayOfWeekIso; // 1ヶ月の曜日
-            $dates[] = $startOfMonth->copy()->addDays($i)->toArray(); // 1ヶ月の日にち
+            $dates[] = $startOfMonth->copy()->addDays($i)->toArray(); // 1ヶ月の日にちを取得する
         }
 
-        dd($dates);
+        foreach($request->weekday as $value) // 検索する値
+        {
+            dump($value);
+        }
 
-      
-        // $result = array_search(1, $dates['']);
-        // return ($result);
+        foreach($dates as $date) // 検索する
+        {
+            dump($date);
 
+            $result = array_search($value,$date);
+
+            dump($result);
+
+        }
 
         // バリデーション　一旦外す
         // $request->validate([

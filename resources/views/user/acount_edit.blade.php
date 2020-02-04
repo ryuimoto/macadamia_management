@@ -1,16 +1,27 @@
 @extends('user.layouts.main_layout')
 @section('title')
-    MM|アカウント編集
+  MM|アカウント編集
 @endsection
 @section('contents')
   <div class="content-wrapper">
     <div class="row">
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <p>{{ $error }}</p>
+              @endforeach
+            </ul>
+        </div>
+      @endif
       <div class="col-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">アカウント編集</h4>
-            <p class="card-description"> Basic form elements </p>
-            <form class="forms-sample">
+            <p class="card-description"> サムネイルを編集する場合は画像をクリックしてください </p>
+            <form class="forms-sample" method="POST" action="{{ route('user.acount_edit') }}">
+              @method('PUT')
+              @csrf
               <div class="form-group">
                 <label for="exampleInputName1">サムネイル</label>
                 <a href="#" class="nav-link">
@@ -24,29 +35,25 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputName1">名前</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Name" value="{{ $name }}">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail3">ステータス</label>
-                <select class="form-control form-control-sm" id="exampleFormControlSelect3">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control form-control-sm" name="status_id" id="exampleFormControlSelect3">
+                  <option value="{{ $status_id }}">{{ $status_id }}</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword4">メールアドレス</label>
-                <input type="email" class="form-control" id="exampleInputPassword4" placeholder="Email">
+                <input type="email" class="form-control" id="exampleInputPassword4" name="email" placeholder="Email" value="{{ $email }}">
               </div>
               <div class="form-group">
                 <label for="exampleSelectGender">パスワード</label>
-                <input type="password" class="form-control" id="exampleInputPassword4" placeholder="パスワード">
+                <input type="password" class="form-control" id="exampleInputPassword4" name="password" placeholder="パスワード">
               </div>
               <div class="form-group">
                 <label for="exampleSelectGender">パスワードの確認</label>
-                <input type="password" class="form-control" id="exampleInputPassword4" placeholder="パスワードの確認">
+                <input type="password" class="form-control" id="exampleInputPassword4" name="password_confirmation" placeholder="パスワードの確認">
               </div>
               <button type="submit" class="btn btn-gradient-primary mr-2">編集する</button>
             </form>
