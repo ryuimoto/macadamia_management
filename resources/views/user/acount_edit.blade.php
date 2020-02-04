@@ -39,8 +39,12 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail3">ステータス</label>
-                <select class="form-control form-control-sm" name="status_id" id="exampleFormControlSelect3">
-                  <option value="{{ $status_id }}">{{ $status_id }}</option>
+                <select class="form-control form-control-sm" name="status_id">
+                  @forelse ($statuses as $status)
+                      <option value="{{ $status->id }}">{{ $status->name }}</option>
+                  @empty
+                      
+                  @endforelse
                 </select>
               </div>
               <div class="form-group">

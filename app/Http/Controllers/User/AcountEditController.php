@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
 
 use App\User;
+use App\Status;
 
 class AcountEditController extends Controller
 {
@@ -19,18 +20,20 @@ class AcountEditController extends Controller
     {
         $username = new LoggedInUser;
 
-        $acount = User::where('id',$username->user('user')->id)->first();
+        $statuses = Status::get();
 
         return view('user.acount_edit')->with([
             'username' => $username->user('user')->name,
             'name' => $username->user('user')->name,
-            'status_id' => $acount->status_id,
-            'email' => $acount->email,
+            'status_ids' => $username->user('user')->status_id,
+            'statuses' => $statuses,
+            'email' => $username->user('user')->email,
         ]);
     }
 
     public function edit(Request $request)
     {
+
         $username = new LoggedInUser;
 
         $request->validate([

@@ -151,6 +151,7 @@ return [
         'leaving' => '退勤時間',
         'weekday' => '曜日',
         'password' => 'パスワード',
+        'status id' => 'ステータス',
     ],
 
 ];

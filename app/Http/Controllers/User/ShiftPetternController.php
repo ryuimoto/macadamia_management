@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
 
 use App\ShiftPettern;
+use App\Status;
 
 
 class ShiftPetternController extends Controller
@@ -19,11 +20,13 @@ class ShiftPetternController extends Controller
     public function index()
     {
         $username = new LoggedInUser;
+        $status = Status::where('id',$username->user('user')->status_id)->first();
 
         $patterns = ShiftPettern::where('user_id',$username->user('user')->id)->get();
 
         return view('user.shift_pettern')->with([
             'username' => $username->user('user')->name,
+            'status' => $status,
             'petterns' => $patterns,
         ]);
     }

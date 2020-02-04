@@ -8,6 +8,7 @@ use App\Libraries\LoggedInUser;
 use Carbon\Carbon;
 
 use App\Shift;
+use App\Status;
 
 class EasyRegistrationController extends Controller
 {
@@ -19,9 +20,11 @@ class EasyRegistrationController extends Controller
     public function index()
     {
         $username = new LoggedInUser;
+        $status = Status::where('id',$username->user('user')->status_id)->first();
 
         return view('user.easy_registration')->with([
             'username' => $username->user('user')->name,
+            'status' => $status,
         ]);
     }
 
