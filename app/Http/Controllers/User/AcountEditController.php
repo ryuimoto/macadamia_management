@@ -21,12 +21,14 @@ class AcountEditController extends Controller
         $username = new LoggedInUser;
 
         $statuses = Status::get();
+        $status = Status::where('id',$username->user('user')->status_id)->first();
 
         return view('user.acount_edit')->with([
             'username' => $username->user('user')->name,
             'name' => $username->user('user')->name,
             'status_ids' => $username->user('user')->status_id,
             'statuses' => $statuses,
+            'status' => $status,
             'email' => $username->user('user')->email,
         ]);
     }

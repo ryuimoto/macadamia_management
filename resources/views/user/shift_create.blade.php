@@ -178,11 +178,10 @@
                   <div class="form-group">
                     <label for="exampleFormControlSelect3">パターン</label>
                     <select class="form-control form-control-sm" id="exampleFormControlSelect3">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                        @forelse ($shift_petterns as $shift_pettern)
+                         <option>{{ $shift_pettern->name }}, 出勤時間：{{ $shift_pettern->attendance }}, 退勤時間：{{ $shift_pettern->leaving }}</option>
+                        @empty
+                        @endforelse
                     </select>
                   </div>
                   <button type="submit" class="btn btn-gradient-primary mr-2">登録する</button>
