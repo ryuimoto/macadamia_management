@@ -8,6 +8,7 @@ use App\Libraries\LoggedInUser;
 
 use App\Status;
 use App\ShiftPettern;
+use App\Shift;
 
 class ShiftCreateController extends Controller
 {
@@ -32,8 +33,18 @@ class ShiftCreateController extends Controller
 
     public function create(Request $request)
     {
-        // return $request;
-        return "登録しました";
+        $username = new LoggedInUser;
+        $shift_petterns = ShiftPettern::where('id',$request->pettern)->first();
+
+        Shift::create([
+            'user_id' => $username->user('user')->id,
+            'attendance' => $shift_petterns->attendance,
+            'leaving' => $shift_petterns->leaving,
+            'date' => $request->date,
+        ]);
+
+        // return $username->user('user')->id;
+        return back();
     }
 
 }

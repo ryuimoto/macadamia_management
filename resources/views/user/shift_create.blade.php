@@ -42,6 +42,9 @@
                 // var title = prompt('Event Title:');
                 var registConfirm = confirm("シフトを登録します。よろしいですか？");
 
+                // var post_data =  new Array(document.forms['pettern_post'],arg.start);
+                var post_data = $('#pettern_post [name=select_pettern]').val();
+                
                 if(registConfirm == true)
                 {
                     // console.log(arg.startStr);
@@ -52,14 +55,15 @@
                         },
                         url: "{{ route('user.shift_create') }}",
                         type: 'POST',
-                        data: 12345,
+                        data: {
+                            'pettern' : post_data,
+                            'date' : arg.start.toISOString().split('T')[0],
+                        },
                     })
                     // Ajaxリクエストが成功した場合
                     .done(function(data) {
                         // $('.delete_message').text(data.responseJSON);
                         console.log(data);
-                        // console.log(data);
-
                     })
                     // Ajaxリクエストが失敗した場合
                     .fail(function() {
@@ -67,9 +71,7 @@
                     });
                     
                 }
-
-
-
+                
                 // if (title) {
                 // calendar.addEvent({
                 //     title: title,
@@ -174,17 +176,16 @@
               <div class="card-body">
                 <h4 class="card-title">シフトを作成</h4>
                 <p class="card-description"> シフトパターンを選択してください </p>
-                <form class="forms-sample">
+                <form class="forms-sample" id="pettern_post">
                   <div class="form-group">
                     <label for="exampleFormControlSelect3">パターン</label>
-                    <select class="form-control form-control-sm" id="exampleFormControlSelect3">
+                    <select class="form-control form-control-sm" id="exampleFormControlSelect3" name="select_pettern">
                         @forelse ($shift_petterns as $shift_pettern)
-                         <option>{{ $shift_pettern->name }}, 出勤時間：{{ $shift_pettern->attendance }}, 退勤時間：{{ $shift_pettern->leaving }}</option>
+                         <option value="{{ $shift_pettern->id }}">{{ $shift_pettern->name }}, 出勤時間：{{ $shift_pettern->attendance }}, 退勤時間：{{ $shift_pettern->leaving }}</option>
                         @empty
                         @endforelse
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-gradient-primary mr-2">登録する</button>
                 </form>
               </div>
             </div>
