@@ -87,9 +87,9 @@
             events: [
                 @forelse ($shifts as $shift)
                     {
-                    title: '{{ $shift->attendance }}〜{{ $shift->leaving }}',
-                    start: '{{ $shift->date }}',
-                    end: '{{ $shift->date }}'
+                        title: '{{ date('G:i',strtotime($shift->attendance)) }}〜{{ date('G:i',strtotime($shift->leaving)) }}',
+                        start: '{{ $shift->date }}',
+                        end: '{{ $shift->date }}',
                     },
                 @empty
                 @endforelse

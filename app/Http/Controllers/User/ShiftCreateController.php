@@ -26,6 +26,13 @@ class ShiftCreateController extends Controller
 
         $shifts = Shift::where('user_id',$username->user('user')->id)->get();
 
+        // foreach($shifts as $shift)
+        // {
+        //     // dump($shift->attendance('G:i', strtotime($shift)));
+        //     dump(date('g:i',strtotime($shift->attendance)));
+
+        // }
+
         return view('user.shift_create')->with([
             'username' => $username->user('user')->name,
             'status' => $status,

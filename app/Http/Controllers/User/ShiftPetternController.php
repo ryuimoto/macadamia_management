@@ -9,7 +9,6 @@ use App\Libraries\LoggedInUser;
 use App\ShiftPettern;
 use App\Status;
 
-
 class ShiftPetternController extends Controller
 {
     public function __construct()
@@ -34,6 +33,8 @@ class ShiftPetternController extends Controller
     public function branchPost(Request $request)
     {
         $username = new LoggedInUser;
+
+        // dd($request->all());
 
         $request->validate([
             'name' => 'required|max:15',
