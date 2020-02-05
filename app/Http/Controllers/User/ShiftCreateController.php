@@ -24,10 +24,13 @@ class ShiftCreateController extends Controller
 
         $shift_petterns = ShiftPettern::where('user_id',$username->user('user')->id)->get();
 
+        $shifts = Shift::where('user_id',$username->user('user')->id)->get();
+
         return view('user.shift_create')->with([
             'username' => $username->user('user')->name,
             'status' => $status,
             'shift_petterns' =>  $shift_petterns,
+            'shifts' => $shifts,
         ]);
     }
 
@@ -43,8 +46,6 @@ class ShiftCreateController extends Controller
             'date' => $request->date,
         ]);
 
-        // return $username->user('user')->id;
-        return back();
     }
 
 }

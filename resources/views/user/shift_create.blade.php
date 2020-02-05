@@ -47,8 +47,6 @@
                 
                 if(registConfirm == true)
                 {
-                    // console.log(arg.startStr);
-
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -57,13 +55,15 @@
                         type: 'POST',
                         data: {
                             'pettern' : post_data,
-                            'date' : arg.start.toISOString().split('T')[0],
+                            // 'date' : arg.start.toISOString().split('T')[0],
+                            'date' : arg.start.toLocaleString().split('T')[0],
                         },
                     })
                     // Ajaxリクエストが成功した場合
                     .done(function(data) {
                         // $('.delete_message').text(data.responseJSON);
-                        console.log(data);
+                        // console.log(data);
+                        window.location.reload();
                     })
                     // Ajaxリクエストが失敗した場合
                     .fail(function() {
@@ -85,10 +85,14 @@
             editable: true,
             eventLimit: true, // allow "more" link when too many events
             events: [
-                {
-                title: 'All Day Event',
-                start: '2019-08-01'
-                },
+                @forelse ($shifts as $shift)
+                    {
+                    title: '{{ $shift->attendance }}〜{{ $shift->leaving }}',
+                    start: '{{ $shift->date }}',
+                    end: '{{ $shift->date }}'
+                    },
+                @empty
+                @endforelse
                 {
                 title: 'Long Event',
                 start: '2019-08-07',
