@@ -185,8 +185,9 @@
                     <label for="exampleFormControlSelect3">パターン</label>
                     <select class="form-control form-control-sm" id="exampleFormControlSelect3" name="select_pettern">
                         @forelse ($shift_petterns as $shift_pettern)
-                         <option value="{{ $shift_pettern->id }}">{{ $shift_pettern->name }}, 出勤時間：{{ $shift_pettern->attendance }}, 退勤時間：{{ $shift_pettern->leaving }}</option>
-                        @empty
+                         <option value="{{ $shift_pettern->id }}">【{{ $shift_pettern->name }}】{{ date('G:i',strtotime($shift_pettern->attendance)) }}〜{{ date('G:i',strtotime($shift_pettern->leaving)) }}</option>
+                         
+                         @empty
                         @endforelse
                     </select>
                   </div>
