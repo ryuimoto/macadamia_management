@@ -32,48 +32,38 @@ class EasyRegistrationController extends Controller
     {
         $username = new LoggedInUser;
 
-        $dt = new Carbon();
-        
-        $startOfMonth = $dt->startOfMonth(); // 今月の初日
+        $request->validate([
+            'attendance' => 'nullable|required|before:leaving',
+            'leaving' => 'nullable|required',
+            'weekday' => 'nullable|required',
+        ]);
 
-        $days = $dt->daysInMonth; // 今月の日数
+        $weekday = array();
 
-        for ($i = 0 ; $i <= $days; $i++) 
+        foreach($request->weekday as $value) // 配列の値をint型に直す
         {
-            $dates[] = $startOfMonth->copy()->addDays($i)->toArray(); // 1ヶ月の日にちを取得する
+            $weekday[] = (int)$value;
         }
 
-        foreach($request->weekday as $value) // 検索する値
+        $startOfMonth = now()->startOfMonth();
+
+        $insertion_to_weekdays = collect(\Carbon\CarbonPeriod::create($startOfMonth->copy()->startOfMonth(), $startOfMonth->copy()->endOfMonth()))->filter(function (\Carbon\CarbonInterface $carbon) use ($weekday) {
+            return in_array($carbon->dayOfWeek, $weekday, true);
+        })->map(function (\Carbon\CarbonInterface $carbon) {
+            return $carbon->toDateString();
+        })->toArray();
+
+        foreach($insertion_to_weekdays as $week)
         {
-            dump($value);
+            Shift::create([
+                'user_id' => $username->user('user')->id,
+                'attendance' => $request->attendance,
+                'leaving' => $request->leaving,
+                'date' => $week,
+            ]);
         }
 
-        foreach($dates as $date) // 検索する
-        {
-            dump($date);
-
-            $result = array_search($value,$date);
-
-            dump($result);
-
-        }
-
-        // バリデーション　一旦外す
-        // $request->validate([
-        //     'attendance' => 'nullable|required|before:leaving',
-        //     'leaving' => 'nullable|required',
-        //     'weekday' => 'nullable|required',
-        // ]);
-
-        // dd($request->weekday);
-
-        // 1ヶ月の中の曜日を探し出して
-
-        // Shift::create([
-        //     'attendance' => ,
-        //     'leaving' => ,
-        //     'date' => ,
-        // ]);        
+        return back();
 
     }
 }
