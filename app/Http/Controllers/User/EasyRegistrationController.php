@@ -21,10 +21,17 @@ class EasyRegistrationController extends Controller
     {
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
+        $carbon = new Carbon();
+
+        // dd($date);
+
+        $shifts = Shift::where('user_id',$username->user('user')->id)
+        ->whereMonth('date','=',$carbon->month)->get();
 
         return view('user.easy_registration')->with([
             'username' => $username->user('user')->name,
             'status' => $status,
+            'shifts' => $shifts,
         ]);
     }
 
