@@ -18,7 +18,7 @@ class CreateShiftsTable extends Migration
             $table->integer('user_id');
             $table->time('attendance');
             $table->time('leaving');
-            $table->date('date');
+            $table->date('date')->unique('user_id');
             $table->timestamps();
         });
     }

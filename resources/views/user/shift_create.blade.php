@@ -44,7 +44,7 @@
 
                 // var post_data =  new Array(document.forms['pettern_post'],arg.start);
                 var post_data = $('#pettern_post [name=select_pettern]').val();
-                
+        
                 if(registConfirm == true)
                 {
                     $.ajax({
@@ -67,7 +67,7 @@
                     })
                     // Ajaxリクエストが失敗した場合
                     .fail(function() {
-                        alert("登録に失敗しました");
+                        alert("一日に複数のシフトは入れられません");
                     });
                     
                 }
@@ -93,56 +93,6 @@
                     },
                 @empty
                 @endforelse
-                {
-                title: 'Long Event',
-                start: '2019-08-07',
-                end: '2019-08-10'
-                },
-                {
-                groupId: 999,
-                title: 'Repeating Event',
-                start: '2019-08-09T16:00:00'
-                },
-                {
-                groupId: 999,
-                title: 'Repeating Event',
-                start: '2019-08-16T16:00:00'
-                },
-                {
-                title: 'Conference',
-                start: '2019-08-11',
-                end: '2019-08-13'
-                },
-                {
-                title: 'Meeting',
-                start: '2019-08-12T10:30:00',
-                end: '2019-08-12T12:30:00'
-                },
-                {
-                title: 'Lunch',
-                start: '2019-08-12T12:00:00'
-                },
-                {
-                title: 'Meeting',
-                start: '2019-08-12T14:30:00'
-                },
-                {
-                title: 'Happy Hour',
-                start: '2019-08-12T17:30:00'
-                },
-                {
-                title: 'Dinner',
-                start: '2019-08-12T20:00:00'
-                },
-                {
-                title: 'Birthday Party',
-                start: '2019-08-13T07:00:00'
-                },
-                {
-                title: 'Click for Google',
-                url: 'http://google.com/',
-                start: '2019-08-28'
-                }
             ],
             titleFormat: function(obj) { // 年月日を日本語化
                 return obj.date.year+"年"+(obj.date.month+1)+"月";
@@ -186,7 +136,6 @@
                     <select class="form-control form-control-sm" id="exampleFormControlSelect3" name="select_pettern">
                         @forelse ($shift_petterns as $shift_pettern)
                          <option value="{{ $shift_pettern->id }}">【{{ $shift_pettern->name }}】{{ date('G:i',strtotime($shift_pettern->attendance)) }}〜{{ date('G:i',strtotime($shift_pettern->leaving)) }}</option>
-                         
                          @empty
                         @endforelse
                     </select>
