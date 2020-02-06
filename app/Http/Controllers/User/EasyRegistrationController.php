@@ -55,15 +55,28 @@ class EasyRegistrationController extends Controller
 
         foreach($insertion_to_weekdays as $week)
         {
-            Shift::create([
-                'user_id' => $username->user('user')->id,
-                'attendance' => $request->attendance,
-                'leaving' => $request->leaving,
-                'date' => $week,
-            ]);
+            try {
+                Shift::create([
+                    'user_id' => $username->user('user')->id,
+                    'attendance' => $request->attendance,
+                    'leaving' => $request->leaving,
+                    'date' => $week,
+                ]);
+           
+            } catch (\Illuminate\Database\QueryException $e) {
+    
+                $errorCode = $e->errorInfo[1];
+    
+                if($errorCode == 1062) //重複エラーをここでキャッチ
+                {
+                  return back()->with(['duplication' => '登録済みの日付がありました。変更する場合は「シフト表」からおこなってください']);
+                }
+              
+            }
         }
-
+       
         return back();
+      
 
     }
 }

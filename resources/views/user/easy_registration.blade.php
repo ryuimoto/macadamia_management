@@ -14,6 +14,13 @@
       </div>
     @endif
     <div class="row">
+      @if(Session::has('duplication'))
+        <div class="row">
+          <div class="alert alert-danger col-md-12 offset-md-2">
+            <p>{!! Session::get('duplication') !!}</p>
+          </div>
+        </div>
+      @endif
       <div class="col-10 offset-md-1 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
