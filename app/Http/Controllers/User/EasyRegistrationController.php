@@ -69,14 +69,12 @@ class EasyRegistrationController extends Controller
     
                 if($errorCode == 1062) //重複エラーをここでキャッチ
                 {
-                  return back()->with(['duplication' => '登録済みの日付がありました。一括登録を利用する場合は一度シフトすべて削除してください。']);
+                  return back()->with(['duplication' => '登録済みの日付がありました。一括登録を利用する場合は一度シフトをすべて削除してください。']);
                 }
               
             }
         }
        
         return back();
-      
-
     }
 }
