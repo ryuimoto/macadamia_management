@@ -95,8 +95,50 @@
 @endsection
 @section('contents')
     <div class="content-wrapper">
-        
-        <div id='calendar'></div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+                      <h4 class="card-title">マイシフト</h4>
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> 日付 </th>
+                            <th> 出勤時間 </th>
+                            <th> 退勤時間 </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @forelse ($shifts as $shift)
+                            <form id="{{ $shift->id }}" action="{{ route('user.shift_list') }}" method="POST">
+                                @method('put')
+                              @csrf
+                              <tr>
+                                <td class="py-1">
+                                  {{ date('m/d', strtotime($shift->date)) }}<?php $date = new \Carbon\Carbon($shift->date); ?>({{ $weekday[$date->dayOfWeek] }})
+                                </td>
+                                <td> <input type="time" name="attendance" class="form-control form-control-sm" value="{{ $shift->attendance }}"> </td>
+                                <td> <input type="time" name="leaving" class="form-control form-control-sm" value="{{ $shift->leaving }}"> </td>
+                                <td width="25%">
+                                  <button type="submit" class="btn btn-gradient-primary btn-fw" name="put" value="{{ $shift->id }}">編集</button>
+                                  <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $shift->id }}">削除</button> 
+                                </td>
+                              </tr>
+                            </form>
+                            @empty
+                              <p>パターンが登録されていません</p>
+                            @endforelse
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div id='calendar'></div>
+            </div>
+        </div>
     </div>
 @endsection
 

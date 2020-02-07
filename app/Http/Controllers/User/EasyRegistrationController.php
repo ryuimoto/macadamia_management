@@ -21,20 +21,10 @@ class EasyRegistrationController extends Controller
     {
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
-        $carbon = new Carbon();
-
-        $shifts = Shift::where('user_id',$username->user('user')->id)
-        ->whereMonth('date','=',$carbon->month)->orderBy('date')->get();
-
-        // dd($shifts->all());
-
-        $weekday = ['日', '月', '火', '水', '木', '金', '土'];
-
+        
         return view('user.easy_registration')->with([
             'username' => $username->user('user')->name,
             'status' => $status,
-            'shifts' => $shifts,
-            'weekday' => $weekday,
         ]);
     }
 
@@ -94,24 +84,5 @@ class EasyRegistrationController extends Controller
            
             return back();
         }
-    }
-
-    public function put(Request $request)
-    {
-
-        Shift::where('id',$request->put)
-        ->update([
-            'attendance' => $request->attendance,
-            'leaving' => $request->leaving,
-        ]);
-
-        return back();
-    }
-
-    public function delete(Request $request)
-    {
-        Shift::where('id',$request->delete)->delete();
-
-        return back();
     }
 }

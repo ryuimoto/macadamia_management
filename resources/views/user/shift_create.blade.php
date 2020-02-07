@@ -145,6 +145,27 @@
             </div>
         </div>
         <div id='calendar'></div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">以下の日程で登録します。よろしいですか？</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>選択した項目が1ヶ月のシフトに登録されます。よろしいですか？</p>
+                  <p>変更がある場合は、「シフト表」から編集してください。</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">登録する</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                  </form>
+                </div><!-- /.modal-footer -->
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
 @endsection
 

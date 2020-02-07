@@ -33,7 +33,6 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
     Route::middleware('auth:user')->group(function(){
         Route::get('/dashboard','User\DashBoardController@index')->name('user.dashboard');
 
-        Route::get('/shift_list','User\ShiftListController@index')->name('user.shift_list');
 
         Route::get('/easy_registration','User\EasyRegistrationController@index')->name('user.easy_registration');
         Route::post('/easy_registration','User\EasyRegistrationController@registration');
@@ -45,8 +44,10 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
 
         Route::get('/shift_pettern','User\ShiftPetternController@index')->name('user.registration_pattern');
         Route::post('/shift_pettern','User\ShiftPetternController@branchPost');
-        Route::put('/shift_pettern','User\ShiftPetternController@put');
-        Route::delete('/shift_pettern','User\ShiftPetternController@delete');
+    
+        Route::get('/shift_list','User\ShiftListController@index')->name('user.shift_list');
+        Route::put('/shift_list','User\ShiftListController@put');
+        Route::delete('/shift_list','User\ShiftListController@delete');
         
         Route::get('/monthly_attendance_record','User\MonthlyAttendanceRecordController@index')->name('user.monthly_attandance_record');
         
