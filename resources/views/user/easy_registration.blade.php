@@ -146,22 +146,24 @@
                             <th> 退勤時間 </th>
                         </tr>
                     </thead>
-                    <tbody>
-                      @forelse ($shifts as $shift)
-                        <tr>
-                          <td class="py-1">
-                            {{ date('m/d', strtotime($shift->date)) }}
-                          </td>
-                          <td> <input type="time" name="name" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $shift->attendance }}"> </td>
-                          <td> <input type="time" name="name" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $shift->leaving }}"> </td>
-                          <td width="25%">
-                            <button type="submit" class="btn btn-gradient-primary btn-fw" name="edit" value="">編集</button>
-                            <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="">削除</button> 
-                          </td>
-                        </tr>
-                      @empty
-                      @endforelse
-                    </tbody>
+                    <form action="" method="POST">
+                      <tbody>
+                        @forelse ($shifts as $shift)
+                          <tr>
+                            <td class="py-1">
+                              {{ date('m/d', strtotime($shift->date)) }}<?php $date = new \Carbon\Carbon($shift->date); ?>({{ $weekday[$date->dayOfWeek] }})
+                            </td>
+                            <td> <input type="time" name="name" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $shift->attendance }}"> </td>
+                            <td> <input type="time" name="name" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $shift->leaving }}"> </td>
+                            <td width="25%">
+                              <button type="submit" class="btn btn-gradient-primary btn-fw" name="edit" value="{{ $shift->id }}">編集</button>
+                              <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $shift->id }}">削除</button> 
+                            </td>
+                          </tr>
+                        @empty
+                        @endforelse
+                      </tbody>
+                    </form>
                 </table>
             </div>
         </div>
