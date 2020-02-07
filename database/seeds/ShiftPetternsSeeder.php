@@ -22,14 +22,14 @@ class ShiftPetternsSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'テスト2',
-                'attendance' => ('10:00'),
-                'leaving' => ('18:00'),
+                'attendance' => ('14:00'),
+                'leaving' => ('19:00'),
             ],
             [
                 'user_id' => 1,
                 'name' => 'テスト3',
-                'attendance' => ('10:00'),
-                'leaving' => ('18:00'),
+                'attendance' => ('17:00'),
+                'leaving' => ('19:00'),
             ],
             [
                 'user_id' => 1,

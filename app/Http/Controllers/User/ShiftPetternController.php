@@ -34,8 +34,6 @@ class ShiftPetternController extends Controller
     {
         $username = new LoggedInUser;
 
-        // dd($request->all());
-
         $request->validate([
             'name' => 'required|max:15',
             'attendance' => 'nullable|required|before:leaving',

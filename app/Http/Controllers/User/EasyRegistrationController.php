@@ -26,6 +26,8 @@ class EasyRegistrationController extends Controller
         $shifts = Shift::where('user_id',$username->user('user')->id)
         ->whereMonth('date','=',$carbon->month)->get();
 
+        // dd($shifts->all());
+
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
         return view('user.easy_registration')->with([
@@ -38,51 +40,78 @@ class EasyRegistrationController extends Controller
 
     public function registration(Request $request)
     {
-        $username = new LoggedInUser;
+        if(isset($request->edit))
+        {
+            return $this->edit($request);
 
-        $request->validate([
-            'attendance' => 'nullable|required|before:leaving',
-            'leaving' => 'nullable|required',
-            'weekday' => 'nullable|required',
+        }else if(isset($request->delete))
+        {
+            return $this->delete($request);
+        }else{
+            $username = new LoggedInUser;
+
+            $request->validate([
+                'attendance' => 'nullable|required|before:leaving',
+                'leaving' => 'nullable|required',
+                'weekday' => 'nullable|required',
+            ]);
+    
+            $weekday = array();
+    
+            foreach($request->weekday as $value) // 配列の値をint型に直す
+            {
+                $weekday[] = (int)$value;
+            }
+    
+            $startOfMonth = now()->startOfMonth();
+    
+            $insertion_to_weekdays = collect(\Carbon\CarbonPeriod::create($startOfMonth->copy()->startOfMonth(), $startOfMonth->copy()->endOfMonth()))->filter(function (\Carbon\CarbonInterface $carbon) use ($weekday) {
+                return in_array($carbon->dayOfWeek, $weekday, true);
+            })->map(function (\Carbon\CarbonInterface $carbon) {
+                return $carbon->toDateString();
+            })->toArray();
+    
+            foreach($insertion_to_weekdays as $week)
+            {
+                try {
+                    Shift::create([
+                        'user_id' => $username->user('user')->id,
+                        'attendance' => $request->attendance,
+                        'leaving' => $request->leaving,
+                        'date' => $week,
+                    ]);
+               
+                } catch (\Illuminate\Database\QueryException $e) {
+        
+                    $errorCode = $e->errorInfo[1];
+        
+                    if($errorCode == 1062) //重複エラーをここでキャッチ
+                    {
+                      return back()->with(['duplication' => '登録済みの日付がありました。一括登録を利用する場合は一度シフトをすべて削除してください。']);
+                    }
+                }
+            }
+           
+            return back();
+        }
+    }
+
+    public function edit(Request $request)
+    {
+
+        Shift::where('id',$request->edit)
+        ->update([
+            'attendance' => $request->attendance,
+            'leaving' => $request->leaving,
         ]);
 
-        $weekday = array();
+        return back();
+    }
 
-        foreach($request->weekday as $value) // 配列の値をint型に直す
-        {
-            $weekday[] = (int)$value;
-        }
+    public function delete(Request $request)
+    {
+        Shift::where('id',$request->delete)->delete();
 
-        $startOfMonth = now()->startOfMonth();
-
-        $insertion_to_weekdays = collect(\Carbon\CarbonPeriod::create($startOfMonth->copy()->startOfMonth(), $startOfMonth->copy()->endOfMonth()))->filter(function (\Carbon\CarbonInterface $carbon) use ($weekday) {
-            return in_array($carbon->dayOfWeek, $weekday, true);
-        })->map(function (\Carbon\CarbonInterface $carbon) {
-            return $carbon->toDateString();
-        })->toArray();
-
-        foreach($insertion_to_weekdays as $week)
-        {
-            try {
-                Shift::create([
-                    'user_id' => $username->user('user')->id,
-                    'attendance' => $request->attendance,
-                    'leaving' => $request->leaving,
-                    'date' => $week,
-                ]);
-           
-            } catch (\Illuminate\Database\QueryException $e) {
-    
-                $errorCode = $e->errorInfo[1];
-    
-                if($errorCode == 1062) //重複エラーをここでキャッチ
-                {
-                  return back()->with(['duplication' => '登録済みの日付がありました。一括登録を利用する場合は一度シフトをすべて削除してください。']);
-                }
-              
-            }
-        }
-       
         return back();
     }
 }

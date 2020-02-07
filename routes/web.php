@@ -37,6 +37,8 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
 
         Route::get('/easy_registration','User\EasyRegistrationController@index')->name('user.easy_registration');
         Route::post('/easy_registration','User\EasyRegistrationController@registration');
+        Route::put('/easy_registration','User\EasyRegistrationController@edit');
+        Route::delete('/easy_registration','User\EasyRegistrationController@delete');
 
         Route::get('/shift_create','User\ShiftCreateController@index')->name('user.shift_create');
         Route::post('/shift_create','User\ShiftCreateController@create');

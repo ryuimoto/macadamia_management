@@ -25,7 +25,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">一括登録</h4>
-            <form class="form-sample" method="POST" action="{{ route('user.easy_registration') }}">
+            <form id="form1" class="form-sample" method="POST" action="{{ route('user.easy_registration') }}">
               @csrf
               <p class="card-description"> 月ごとのシフトを曜日を選んで登録できます。 </p>
               <div class="row">
@@ -139,31 +139,33 @@
             <div class="card-body">
                 <h4 class="card-title">シフト</h4>
                 <table class="table table-striped">
-                    <thead>
+                  <thead>
+                    <tr>
+                      <th> 日付 </th>
+                      <th> 出勤時間 </th>
+                      <th> 退勤時間 </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($shifts as $shift)
+                      <form id="{{ $shift->id }}" action="{{ route('user.easy_registration') }}" method="POST">
+                        @csrf
                         <tr>
-                            <th> 日付 </th>
-                            <th> 出勤時間 </th>
-                            <th> 退勤時間 </th>
+                          <td class="py-1">
+                            {{ date('m/d', strtotime($shift->date)) }}<?php $date = new \Carbon\Carbon($shift->date); ?>({{ $weekday[$date->dayOfWeek] }})
+                          </td>
+                          <td> <input type="time" name="attendance" class="form-control form-control-sm" value="{{ $shift->attendance }}"> </td>
+                          <td> <input type="time" name="leaving" class="form-control form-control-sm" value="{{ $shift->leaving }}"> </td>
+                          <td width="25%">
+                            <button type="submit" class="btn btn-gradient-primary btn-fw" name="edit" value="{{ $shift->id }}">編集</button>
+                            <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $shift->id }}">削除</button> 
+                          </td>
                         </tr>
-                    </thead>
-                    <form action="" method="POST">
-                      <tbody>
-                        @forelse ($shifts as $shift)
-                          <tr>
-                            <td class="py-1">
-                              {{ date('m/d', strtotime($shift->date)) }}<?php $date = new \Carbon\Carbon($shift->date); ?>({{ $weekday[$date->dayOfWeek] }})
-                            </td>
-                            <td> <input type="time" name="name" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $shift->attendance }}"> </td>
-                            <td> <input type="time" name="name" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $shift->leaving }}"> </td>
-                            <td width="25%">
-                              <button type="submit" class="btn btn-gradient-primary btn-fw" name="edit" value="{{ $shift->id }}">編集</button>
-                              <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $shift->id }}">削除</button> 
-                            </td>
-                          </tr>
-                        @empty
-                        @endforelse
-                      </tbody>
-                    </form>
+                      </form>
+                      @empty
+                        <p>パターンが登録されていません</p>
+                      @endforelse
+                    </tbody>
                 </table>
             </div>
         </div>
