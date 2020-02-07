@@ -24,7 +24,7 @@ class EasyRegistrationController extends Controller
         $carbon = new Carbon();
 
         $shifts = Shift::where('user_id',$username->user('user')->id)
-        ->whereMonth('date','=',$carbon->month)->get();
+        ->whereMonth('date','=',$carbon->month)->orderBy('date')->get();
 
         // dd($shifts->all());
 
