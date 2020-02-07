@@ -37,7 +37,7 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
 
         Route::get('/easy_registration','User\EasyRegistrationController@index')->name('user.easy_registration');
         Route::post('/easy_registration','User\EasyRegistrationController@registration');
-        Route::put('/easy_registration','User\EasyRegistrationController@edit');
+        Route::put('/easy_registration','User\EasyRegistrationController@put');
         Route::delete('/easy_registration','User\EasyRegistrationController@delete');
 
         Route::get('/shift_create','User\ShiftCreateController@index')->name('user.shift_create');
@@ -45,8 +45,8 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
 
         Route::get('/shift_pettern','User\ShiftPetternController@index')->name('user.registration_pattern');
         Route::post('/shift_pettern','User\ShiftPetternController@branchPost');
-        Route::put('/shift_pettern','User\ShiftPetternController@editPost');
-        Route::delete('/shift_pettern','User\ShiftPetternController@deletePost');
+        Route::put('/shift_pettern','User\ShiftPetternController@put');
+        Route::delete('/shift_pettern','User\ShiftPetternController@delete');
         
         Route::get('/monthly_attendance_record','User\MonthlyAttendanceRecordController@index')->name('user.monthly_attandance_record');
         

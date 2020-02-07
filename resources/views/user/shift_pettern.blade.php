@@ -70,7 +70,6 @@
                 <table class="table table-dark">
                     <thead>
                       <tr>
-                        <th> # </th>
                         <th> パターン名 </th>
                         <th> 出勤時間 </th>
                         <th> 退勤時間 </th>
@@ -79,16 +78,14 @@
                     
                       <tbody>
                         @forelse ($petterns as $pettern)
-                          <form id="{{ $pettrn->id }}" action="{{ route('user.registration_pattern') }}" method="POST">
+                          <form id="{{ $pettern->id }}" action="{{ route('user.registration_pattern') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $pettern->id }}">
                             <tr>
-                              <td> {{ $pettern->id }} </td>
                               <td><div class="col-sm-12"><input type="text" name="name" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->name }}"></div></td>
                               <td><div class="col-sm-12"><input type="time" name="attendance" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->attendance }}"></div></td>
                               <td><div class="col-sm-12"><input type="time" name="leaving" class="form-control form-control-sm" aria-describedby="basic-addon1" value="{{ $pettern->leaving }}"></div></td>
                               <td>
-                                <button type="submit" class="btn btn-gradient-primary btn-fw" name="edit" value="{{ $pettern->id }}">編集</button>
+                                <button type="submit" class="btn btn-gradient-primary btn-fw" name="put" value="{{ $pettern->id }}">編集</button>
                                 <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $pettern->id }}">削除</button>
                               </td>
                             </tr>

@@ -96,10 +96,10 @@ class EasyRegistrationController extends Controller
         }
     }
 
-    public function edit(Request $request)
+    public function put(Request $request)
     {
 
-        Shift::where('id',$request->edit)
+        Shift::where('id',$request->put)
         ->update([
             'attendance' => $request->attendance,
             'leaving' => $request->leaving,

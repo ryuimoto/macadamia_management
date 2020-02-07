@@ -40,12 +40,12 @@ class ShiftPetternController extends Controller
             'leaving' => 'nullable|required',
         ]);
 
-        if(isset($request->edit))
+        if(isset($request->put))
         {
-            return $this->editPost($request);
+            return $this->put($request);
         }else if(isset($request->delete))
         {
-            return $this->deletePost($request);
+            return $this->delete($request);
         }else{
             ShiftPettern::Create([
                 'user_id' => $username->user('user')->id,
@@ -58,9 +58,10 @@ class ShiftPetternController extends Controller
         }
     }
 
-    public function editPost(Request $request)
+    public function put(Request $request)
     {
-        ShiftPettern::where('id',$request->id)
+
+        ShiftPettern::where('id',$request->put)
         ->update([
             'name' => $request->name,
             'attendance' => $request->attendance,
@@ -70,9 +71,9 @@ class ShiftPetternController extends Controller
         return back();
     }
 
-    public function deletePost($request)
+    public function delete($request)
     {
-        ShiftPettern::where('id', $request->id)->delete();
+        ShiftPettern::where('id', $request->delete)->delete();
 
         return back();
     }

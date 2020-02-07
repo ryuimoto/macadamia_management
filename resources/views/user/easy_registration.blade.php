@@ -157,7 +157,7 @@
                           <td> <input type="time" name="attendance" class="form-control form-control-sm" value="{{ $shift->attendance }}"> </td>
                           <td> <input type="time" name="leaving" class="form-control form-control-sm" value="{{ $shift->leaving }}"> </td>
                           <td width="25%">
-                            <button type="submit" class="btn btn-gradient-primary btn-fw" name="edit" value="{{ $shift->id }}">編集</button>
+                            <button type="submit" class="btn btn-gradient-primary btn-fw" name="put" value="{{ $shift->id }}">編集</button>
                             <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $shift->id }}">削除</button> 
                           </td>
                         </tr>
