@@ -69,7 +69,6 @@
                     .fail(function() {
                         alert("一日に複数のシフトは入れられません");
                     });
-                    
                 }
                 
                 // if (title) {
