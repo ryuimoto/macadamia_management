@@ -109,7 +109,8 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('user.monthly_attandance_record') }}">
+              <?php $carbon = new \Carbon\Carbon(); ?>
+              <a class="nav-link" href="{{ route('user.monthly_attandance_record',['year' => $carbon->year,'month' => $carbon->month]) }}">
                 <span class="menu-title">月次出勤簿</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Libraries\LoggedInUser;
+use Carbon\Carbon;
 
 use App\Status;
 
@@ -21,6 +22,7 @@ class DashBoardController extends Controller
     {
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
+        $carbon = new Carbon();
 
         return view('user.dashboard')->with([
             'username' => $username->user('user')->name,

@@ -12,7 +12,7 @@
                 </div>
                 <div class="row">
                     <a href=""><i class="mdi mdi-chevron-double-left" style="font-size:28px;"></i></a>
-                    <h3>2010年9月10日</h3>
+                    <h3>{{ $year }}年{{ $month }}月</h3>
                     <a href=""><i class="mdi mdi-chevron-double-right" style="font-size:28px;"></i></a>
                 </div>
                 <p class="card-description">翌月27日になると自動的に担当者に送られます。 </p>

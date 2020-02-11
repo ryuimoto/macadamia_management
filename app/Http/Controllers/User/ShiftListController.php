@@ -19,12 +19,15 @@ class ShiftListController extends Controller
 
     public function index()
     {
+       
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
 
         $shifts = Shift::get();
 
         $carbon = new Carbon();
+        $year = $carbon->year;
+        $month = $carbon->month;
         $my_shifts = Shift::where('user_id',$username->user('user')->id)
         ->whereMonth('date','=',$carbon->month)->orderBy('date')->get();
 
@@ -36,6 +39,8 @@ class ShiftListController extends Controller
             'shifts' => $shifts,
             'my_shifts' => $my_shifts,
             'weekday' => $weekday,
+            'year' => $year,
+            'month' => $month,
         ]);
     }
 

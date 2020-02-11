@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
+use Carbon\Carbon;
 
 use App\Status;
 use App\ShiftPettern;
@@ -32,6 +33,7 @@ class ShiftCreateController extends Controller
         //     dump(date('g:i',strtotime($shift->attendance)));
 
         // }
+
 
         return view('user.shift_create')->with([
             'username' => $username->user('user')->name,
