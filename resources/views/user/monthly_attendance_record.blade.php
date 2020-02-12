@@ -11,9 +11,9 @@
                     <h3>　月次出勤簿</h3>
                 </div>
                 <div class="row">
-                    <a href=""><i class="mdi mdi-chevron-double-left" style="font-size:28px;"></i></a>
+                    <a href="{{ route('user.monthly_attandance_record',['year' => $year,'month' => $month]) }}"><i class="mdi mdi-chevron-double-left" style="font-size:28px;"></i></a>
                     <h3>{{ $year }}年{{ $month }}月</h3>
-                    <a href=""><i class="mdi mdi-chevron-double-right" style="font-size:28px;"></i></a>
+                    <a href="{{ route('user.monthly_attandance_record',['year' => $year,'month' => $month]) }}"><i class="mdi mdi-chevron-double-right" style="font-size:28px;"></i></a>
                 </div>
                 <p class="card-description">翌月27日になると自動的に担当者に送られます。 </p>
                 <form class="forms-sample">
@@ -26,7 +26,6 @@
                     <div class="form-group row">
                       <label for="exampleInputEmail2" class="col-sm-3 offset-md-2 col-form-label">実労働時間</label>
                       <div class="col-sm-7">
-                        {{-- <h2>{{ $total_working_hours }}時間</h2> --}}
                         <h2>{{ $total }}時間</h2>
                       </div>
                     </div>
@@ -42,7 +41,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th> 出勤日 </th>
+                                <th> 日付 </th>
                                 <th> 出勤時間 </th>
                                 <th> 退勤時間 </th>
                                 <th> 労働時間 </th>

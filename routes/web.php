@@ -49,7 +49,9 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::delete('/shift_list','User\ShiftListController@delete');
         
         Route::get('/monthly_attendance_record/{year}/{month}','User\MonthlyAttendanceRecordController@index')->name('user.monthly_attandance_record');
-        
+    
+        Route::get('test','User\MonthlyAttendanceRecordController@changeDate');
+
         Route::get('/acount_edit','User\AcountEditController@index')->name('user.acount_edit');
         Route::put('/acount_edit','User\AcountEditController@edit');
 

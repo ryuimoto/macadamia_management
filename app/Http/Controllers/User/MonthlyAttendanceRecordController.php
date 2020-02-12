@@ -17,12 +17,27 @@ class MonthlyAttendanceRecordController extends Controller
         $this->middleware('auth:user');
     }
 
+    public function changeDate()
+    {
+        return 1234;
+    }
+
     public function index($year,$month)
     {
+        $carbon = new Carbon($year,$month);
+
+        $edit_year = new Carbon($year);
+
+        if($month < 1)
+        {
+            return $edit_year->subYear()->year;
+        } else if($month > 12 )
+        {
+            return $edit_year->addYear()->year;
+        }
+
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
-
-        $carbon = new Carbon();
 
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
@@ -41,8 +56,8 @@ class MonthlyAttendanceRecordController extends Controller
             'username' =>  $username->user('user')->name,
             'status' => $status,
             'year' => $year,
-            'weekday' => $weekday,
             'month' => $month,
+            'weekday' => $weekday,
             'shifts' => $shifts,
             'working_days' => $shifts->count(),
             'total' => $total,
