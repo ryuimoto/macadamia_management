@@ -10,7 +10,6 @@ use Carbon\Carbon;
 
 use App\Status;
 
-
 class DashBoardController extends Controller
 {
     public function __construct()

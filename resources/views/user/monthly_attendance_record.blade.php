@@ -20,13 +20,14 @@
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 offset-md-2 col-form-label">労働日数</label>
                       <div class="col-sm-7">
-                          <h2>100日</h2>
+                          <h2>{{ $working_days }}日</h2>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="exampleInputEmail2" class="col-sm-3 offset-md-2 col-form-label">実労働時間</label>
                       <div class="col-sm-7">
-                        <h2>100時間</h2>
+                        {{-- <h2>{{ $total_working_hours }}時間</h2> --}}
+                        <h2>{{ $total }}時間</h2>
                       </div>
                     </div>
                 </form>
@@ -37,8 +38,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">出勤ログ</h4>
-                    <p class="card-description"> Add class <code>.table-bordered</code>
-                    </p>
+                    <p class="card-description">修正や削除は「シフト表」からおこなってください </p>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -49,86 +49,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td> 1/2 </td>
-                                <td><input type="text" class="form-control form-control-sm"></td>
-                                <td>
-                                    <input type="text" class="form-control form-control-sm">
-                                </td>
-                                <td> 100時間 </td>
-                            </tr>
-                            <tr>
-                                <td> 2 </td>
-                                <td> Messsy Adam </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" role="progressbar"
-                                            style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td> $245.30 </td>
-                            </tr>
-                            <tr>
-                                <td> 3 </td>
-                                <td> John Richards </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" role="progressbar"
-                                            style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td> $138.00 </td>
-                            </tr>
-                            <tr>
-                                <td> 4 </td>
-                                <td> Peter Meggik </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-primary" role="progressbar"
-                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td> $ 77.99 </td>
-                            </tr>
-                            <tr>
-                                <td> 5 </td>
-                                <td> Edward </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" role="progressbar"
-                                            style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td> $ 160.25 </td>
-                            </tr>
-                            <tr>
-                                <td> 6 </td>
-                                <td> John Doe </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar"
-                                            style="width: 65%" aria-valuenow="65" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td> $ 123.21 </td>
-                            </tr>
-                            <tr>
-                                <td> 7 </td>
-                                <td> Henry Tom </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" role="progressbar"
-                                            style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td> $ 150.00 </td>
-                            </tr>
+                            @forelse ($shifts as $shift)
+                                <?php $date = new \Carbon\Carbon($shift->date);?>
+                                <tr>
+                                    <td> {{ date('m/d', strtotime($shift->date)) }}({{ $weekday[$date->dayOfWeek] }}) </td>
+                                    <td> {{ date('G:i',strtotime($shift->attendance)) }} </td>
+                                    <td> {{ date('G:i',strtotime($shift->leaving)) }}</td>
+                                    <td> {{ (strtotime($shift->attendance) - strtotime($shift->leaving)) / -3600 }}時間</td>
+                                </tr>
+                            @empty
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

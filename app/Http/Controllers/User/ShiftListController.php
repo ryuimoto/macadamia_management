@@ -19,7 +19,6 @@ class ShiftListController extends Controller
 
     public function index()
     {
-       
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
 

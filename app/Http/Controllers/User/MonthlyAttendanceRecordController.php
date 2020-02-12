@@ -17,27 +17,35 @@ class MonthlyAttendanceRecordController extends Controller
         $this->middleware('auth:user');
     }
 
-    public function index()
+    public function index($year,$month)
     {
-        // dd($year);
-
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
 
         $carbon = new Carbon();
 
-        $year = $carbon->year;
+        $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
-        $month = $carbon->month;
+        $shifts = Shift::where('user_id',$username->user('user')->id)
+        ->whereMonth('date','=',$month)->whereDay('date','<',$carbon->day)
+        ->orderBy('date')->get();     
 
-        $shifts = Shift::where('id',$username->user('user')->name)
-        ->whereMonth('date','=',$carbon->month)->get();
+        $total = 0;
+
+        foreach($shifts as $shift)
+        {
+            $total += (strtotime($shift->attendance) - strtotime($shift->leaving)) / -3600;
+        }
 
         return view('user.monthly_attendance_record')->with([
             'username' =>  $username->user('user')->name,
             'status' => $status,
             'year' => $year,
+            'weekday' => $weekday,
             'month' => $month,
+            'shifts' => $shifts,
+            'working_days' => $shifts->count(),
+            'total' => $total,
         ]);
     }
 }
