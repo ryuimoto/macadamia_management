@@ -48,9 +48,10 @@ Route::prefix('user4645775yugregergerg456tyrr7543')->group(function(){
         Route::put('/shift_list','User\ShiftListController@put');
         Route::delete('/shift_list','User\ShiftListController@delete');
         
-        Route::get('/monthly_attendance_record/{year}/{month}','User\MonthlyAttendanceRecordController@index')->name('user.monthly_attandance_record');
+        Route::get('/monthly_attendance_record/{date}/{process}','User\MonthlyAttendanceRecordController@index')
+        ->where('process','(basis|prev|next)')->name('user.monthly_attandance_record');
     
-        Route::get('test','User\MonthlyAttendanceRecordController@changeDate');
+        Route::get('test/{date}/{proccess}','User\MonthlyAttendanceRecordController@changeDate')->name('user.date_change');
 
         Route::get('/acount_edit','User\AcountEditController@index')->name('user.acount_edit');
         Route::put('/acount_edit','User\AcountEditController@edit');

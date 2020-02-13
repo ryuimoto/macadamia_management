@@ -8,13 +8,15 @@
             <div class="card">
               <div class="card-body">
                 <div class="row">
-                    <h3>　月次出勤簿</h3>
+                    <h3>月次出勤簿</h3>
                 </div>
                 <div class="row">
-                    <a href="{{ route('user.monthly_attandance_record',['year' => $year,'month' => $month]) }}"><i class="mdi mdi-chevron-double-left" style="font-size:28px;"></i></a>
-                    <h3>{{ $year }}年{{ $month }}月</h3>
-                    <a href="{{ route('user.monthly_attandance_record',['year' => $year,'month' => $month]) }}"><i class="mdi mdi-chevron-double-right" style="font-size:28px;"></i></a>
-                </div>
+                    <?php $prev_date = new \Carbon\Carbon($date);?>
+                    <a href="{{ route('user.monthly_attandance_record',['date' => $prev_date->subMonth()->toDateString(),'process' => 'prev']) }}" name = "atagu" value ="0" ><i class="mdi mdi-chevron-double-left" style="font-size:28px;"></i></a>
+                    <h3>{{ $date_view->year }}年{{ $date_view->month }}月</h3>
+                    <?php $next_date = new \carbon\Carbon($date) ?>
+                    <a href="{{ route('user.monthly_attandance_record',['date' => $next_date->addMonth()->toDateString(),'process' => 'next']) }}" name = "atagu" value = "1" ><i class="mdi mdi-chevron-double-right" style="font-size:28px;"></i></a>
+                </div> 
                 <p class="card-description">翌月27日になると自動的に担当者に送られます。 </p>
                 <form class="forms-sample">
                     <div class="form-group row">
@@ -49,7 +51,7 @@
                         </thead>
                         <tbody>
                             @forelse ($shifts as $shift)
-                                <?php $date = new \Carbon\Carbon($shift->date);?>
+                                <?php $date = new \Carbon\Carbon($shift->date); ?>
                                 <tr>
                                     <td> {{ date('m/d', strtotime($shift->date)) }}({{ $weekday[$date->dayOfWeek] }}) </td>
                                     <td> {{ date('G:i',strtotime($shift->attendance)) }} </td>
