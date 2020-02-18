@@ -28,7 +28,7 @@ class ShiftListController extends Controller
         $year = $carbon->year;
         $month = $carbon->month;
         $my_shifts = Shift::where('user_id',$username->user('user')->id)
-        ->whereMonth('date','=',$carbon->month)->orderBy('date')->get();
+        ->whereMonth('date','=',$carbon->month)->orderBy('date')->paginate(5);
 
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
