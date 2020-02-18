@@ -62,6 +62,12 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-7 offset-md-5">
+                            {{ $shifts->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

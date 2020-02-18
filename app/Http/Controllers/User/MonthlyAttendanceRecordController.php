@@ -33,8 +33,7 @@ class MonthlyAttendanceRecordController extends Controller
         ->whereMonth('date','=',$change_date->month)
         // ->whereDay('date','<',$today)
         ->where('date','<',$today)
-        ->orderBy('date')->get();
-
+        ->orderBy('date')->paginate(10);
     
         $total = 0;
 
