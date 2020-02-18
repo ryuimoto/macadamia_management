@@ -31,7 +31,6 @@ class MonthlyAttendanceRecordController extends Controller
         $shifts = Shift::where('user_id',$username->user('user')->id) // モデル
         ->whereYear('date','=',$change_date->year)
         ->whereMonth('date','=',$change_date->month)
-        // ->whereDay('date','<',$today)
         ->where('date','<',$today)
         ->orderBy('date')->paginate(10);
     
