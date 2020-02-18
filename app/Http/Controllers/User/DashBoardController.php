@@ -34,16 +34,22 @@ class DashBoardController extends Controller
         ->where('date','<',$today)
         ->orderBy('date')->get();
 
+        $working_hours = 0;
     
         foreach($shifts as $shift)
         {
             $working_hours += (strtotime($shift->attendance) - strtotime($shift->leaving)) / -3600;
         }
 
-        dd($working_hours);
-
-
         $go_to_work_staffs = Shift::whereDate('date',$today)->get();
+
+        for($i = 1; $i < 13; $i++)
+        {
+            $annual_attendance = Shift::where('user_id',$username->user('user')->id)
+            ->whereMonth('date',$i)->get();
+
+            $total[] = $annual_attendance->count();
+        }
 
         return view('user.dashboard')->with([
             'username' => $username->user('user')->name,
@@ -51,6 +57,9 @@ class DashBoardController extends Controller
             'today' => $today,
             'weekday' => $weekday,
             'go_to_work_staffs' => $go_to_work_staffs,
+            'working_hours' => $working_hours,
+            'working_days' => $shifts->count(),
+            'annual_attendance' => $total,
         ]);
     }
 }

@@ -138,6 +138,7 @@
     <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/js/misc.js') }}"></script>
     <!-- endinject -->
+    @yield('js')
     @yield('plugin_js')
   </body>
 </html>

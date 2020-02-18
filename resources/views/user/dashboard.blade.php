@@ -12,8 +12,18 @@
             <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
             <h4 class="font-weight-normal mb-3">今月の労働日数 <i class="mdi mdi-chart-line mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">$ 15,0000</h2>
-            <h6 class="card-text">Increased by 60%</h6>
+            <h2 class="mb-5">{{ $working_days }}日</h2>
+            <h6 class="card-text">
+              @if ($working_days <= 0)
+                シフト入れました？
+              @elseif ($working_days > 10)
+                あなたの頑張りはみんな見てますよ( ´ ▽ ` )
+              @elseif ($working_days > 15)
+                目指せ！社畜！
+              @elseif ($working_days > 25)
+                教室に布団と歯ブラシを準備しましょう＾＾
+              @endif
+            </h6>
           </div>
         </div>
       </div>
@@ -23,8 +33,16 @@
             <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/dashboard/circle.svg') }}" class="card-img-absolute" alt="circle-image" />
             <h4 class="font-weight-normal mb-3">今月の労働時間 <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">45,6334</h2>
-            <h6 class="card-text">Decreased by 10%</h6>
+            <h2 class="mb-5">{{ $working_hours }}時間</h2>
+            <h6 class="card-text">
+              @if ($working_hours <= 0)
+                働かざるもの食うべからず！
+              @elseif ($working_hours > 50)
+                休憩もしっかりとってくださいね♡
+              @elseif ($working_hours > 100)
+                自己ブラックの世界へようこそ♪
+              @endif
+            </h6>
           </div>
         </div>
       </div>
@@ -66,12 +84,18 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">出勤率</h4>
+            <p>{{ $today->year }}年</p>
             <canvas id="barChart" style="height:230px"></canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
+@endsection
+@section('js')
+  <script>
+    const total = @json($annual_attendance);
+  </script>
 @endsection
 @section('plugin_js')
   <script src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/vendors/chart.js/Chart.min.js') }}"></script>

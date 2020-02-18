@@ -4,11 +4,13 @@ $(function () {
    * Data and config for chartjs
    */
   'use strict';
+
   var data = {
-    labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
+    labels: ["1月", "2月", "3月", "4月", "5月","6月","7月","8月","9月","10月","11月","12月"],
     datasets: [{
       label: '# of Votes',
-      data: [10, 19, 3, 5, 2, 3],
+      data: total,
+      
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
