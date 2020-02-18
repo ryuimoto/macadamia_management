@@ -27,7 +27,7 @@
                 <a href="#" class="nav-link">
                   <div class="nav-profile-image">
                     <label>
-                      <input type="file" hidden />
+                      <input type="file" name="top_image" hidden />
                       <img class="rounded-circle" src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="profile">
                     </label>
                   </div>

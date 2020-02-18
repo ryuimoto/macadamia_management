@@ -36,6 +36,8 @@ class AcountEditController extends Controller
     public function edit(Request $request)
     {
 
+        dd($request->all());
+
         $username = new LoggedInUser;
 
         $request->validate([

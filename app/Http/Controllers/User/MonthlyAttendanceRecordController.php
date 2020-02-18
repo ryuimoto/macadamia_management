@@ -28,15 +28,15 @@ class MonthlyAttendanceRecordController extends Controller
 
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
-        $shifts = Shift::where('user_id',$username->user('user')->id) // モデル
+        $shifts = Shift::where('user_id',$username->user('user')->id)
         ->whereYear('date','=',$change_date->year)
         ->whereMonth('date','=',$change_date->month)
         ->where('date','<',$today)
-        ->orderBy('date')->paginate(10);
-    
+        ->orderBy('date');
+
         $total = 0;
 
-        foreach($shifts as $shift)
+        foreach($shifts->get() as $shift)
         {
             $total += (strtotime($shift->attendance) - strtotime($shift->leaving)) / -3600;
         }
@@ -47,8 +47,8 @@ class MonthlyAttendanceRecordController extends Controller
             'weekday' => $weekday,
             'date' => $change_date,
             'date_view' => $change_date,
-            'shifts' => $shifts,
             'working_days' => $shifts->count(),
+            'shifts' => $shifts->paginate(10),
             'total' => $total,
         ]);
     }
