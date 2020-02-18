@@ -10,10 +10,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected function redirectTo()
-    {
-        return route('admin.dashboard');
-    }
+    
 
     public function __construct()
     {

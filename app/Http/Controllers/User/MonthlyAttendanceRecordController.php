@@ -28,12 +28,14 @@ class MonthlyAttendanceRecordController extends Controller
 
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
-        $shifts = Shift::where('user_id',$username->user('user')->id)
+        $shifts = Shift::where('user_id',$username->user('user')->id) // モデル
         ->whereYear('date','=',$change_date->year)
         ->whereMonth('date','=',$change_date->month)
-        ->whereDay('date','<',$today)
-        ->orderBy('date')->get();     
+        // ->whereDay('date','<',$today)
+        ->where('date','<',$today)
+        ->orderBy('date')->get();
 
+    
         $total = 0;
 
         foreach($shifts as $shift)
