@@ -2,6 +2,7 @@
 @section('title')
     MM|シフト一覧
 @endsection
+
 @section('fullcalendar_library')
     <link href='{{ asset('library/packages/core/main.css') }}' rel='stylesheet' />
     <link href='{{ asset('library/packages/daygrid/main.css') }}' rel='stylesheet' />
@@ -91,6 +92,28 @@
         max-width: 900px;
         margin: 0 auto;
         }
+
+        /*一応幅を決めておきます*/
+        input[type="date"] {
+
+            /*忘れずに書きましょう。*/
+            position: relative;
+        }
+        
+        input[type="date"]::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+        }
+        
+        input[type="date"]::-webkit-clear-button{
+            -webkit-appearance: none;
+        }
+
+        input[type=date]::-webkit-calendar-picker-indicator {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
     </style>
 @endsection
 @section('contents')
@@ -110,12 +133,12 @@
                             </thead>
                             <tbody>
                                 @forelse ($my_shifts as $my_shift)
-                                    <form id="{{ $my_shift->id }}" action="{{ route('user.shift_list') }}" method="POST">
-                                        @method('put')
+                                    <form id="{{ $my_shift->id }}" method="POST" action="{{ route('user.shift_list') }}">
                                         @csrf
+                                        @method('put')
                                         <tr>
                                             <td class="py-1">
-                                            {{ date('m/d', strtotime($my_shift->date)) }}<?php $date = new \Carbon\Carbon($my_shift->date); ?>({{ $weekday[$date->dayOfWeek] }})
+                                            <input type="date" data-provide="datepicker" class="form-control form-control-sm" name="date" value="{{ $my_shift->date }}">
                                             </td>
                                             <td> <input type="time" name="attendance" class="form-control form-control-sm" value="{{ $my_shift->attendance }}"> </td>
                                             <td> <input type="time" name="leaving" class="form-control form-control-sm" value="{{ $my_shift->leaving }}"> </td>
@@ -124,9 +147,9 @@
                                             <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $my_shift->id }}">削除</button> 
                                             </td>
                                         </tr>
-                                        @empty
-                                        <p>シフトが登録されていません</p>
                                     </form>
+                                    @empty
+                                    <p>シフトが登録されていません</p>
                                 @endforelse
                             </tbody>
                         </table>

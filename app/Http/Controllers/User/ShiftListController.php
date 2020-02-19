@@ -54,15 +54,18 @@ class ShiftListController extends Controller
 
     public function put(Request $request)
     {
-        dd($request->all());
-
+        $request->validate([
+            'date' => 'unique:shifts,date',
+        ]);
         if($request->delete)
         {
             return $this->delete($request);
         }else{
+            
 
             Shift::where('id',$request->put)
             ->update([
+                'date' => $request->date,
                 'attendance' => $request->attendance,
                 'leaving' => $request->leaving,
             ]);
