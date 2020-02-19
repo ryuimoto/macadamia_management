@@ -71,6 +71,10 @@
                       <td>  {{ date('G:i', strtotime($go_to_work_staff->leaving )) }} </td>
                     </tr>
                   @empty
+                    <tr>
+                      <td>本日出勤予定のスタッフはいません</td>
+                    </tr>
+                    <br>
                   @endforelse
                 </tbody>
               </table>

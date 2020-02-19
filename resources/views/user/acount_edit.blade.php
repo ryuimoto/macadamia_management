@@ -5,6 +5,11 @@
 @section('contents')
   <div class="content-wrapper">
     <div class="row">
+      @if (session('success'))
+        <div class="alert alert-success">
+          {{ session('success') }}
+        </div>
+      @endif
       @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -19,7 +24,7 @@
           <div class="card-body">
             <h4 class="card-title">アカウント編集</h4>
             <p class="card-description"> サムネイルを編集する場合は画像をクリックしてください </p>
-            <form class="forms-sample" method="POST" action="{{ route('user.acount_edit') }}">
+            <form class="forms-sample" method="POST" action="{{ route('user.acount_edit') }}" enctype="multipart/form-data" >
               @method('PUT')
               @csrf
               <div class="form-group">
@@ -27,8 +32,13 @@
                 <a href="#" class="nav-link">
                   <div class="nav-profile-image">
                     <label>
-                      <input type="file" name="top_image" hidden />
-                      <img class="rounded-circle" src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="profile">
+                      <input type="file" name="image_name" hidden />
+                      {{-- <img class="rounded-circle" src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="profile"> --}}
+                      @if ($is_image)
+                        <img class="rounded-circle" src="/storage/profile_images/{{ $image_name }}" width="100" height="100" alt="profile">
+                      @else
+                        <img class="rounded-circle" src="{{ asset('img/dummy.png') }}" width="100" height="100" alt="profile">
+                      @endif
                     </label>
                   </div>
                 </a>

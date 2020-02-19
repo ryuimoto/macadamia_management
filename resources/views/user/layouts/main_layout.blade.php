@@ -45,6 +45,7 @@
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
                   <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="image">
+                  {{-- <img src="/storage/profile_images/{{ Auth::id() }}.jpg" alt="image"> --}}
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">

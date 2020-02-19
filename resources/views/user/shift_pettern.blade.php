@@ -90,7 +90,9 @@
                         </tr>
                       </form>
                     @empty
-                      <p>パターンが登録されていません</p>
+                      <tr>
+                        <td>パターンが登録されていません</td>
+                      </tr>
                     @endforelse
                   </tbody>
                 </table>

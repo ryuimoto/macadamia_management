@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'ユーザー太郎',
                 'status_id' => 1,
+                'image_name' => 12355,
                 'email' => 'test12345@gmail.com',
                 'password' => bcrypt('test12345'),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -23,6 +24,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'ユーザー次郎',
                 'status_id' => 1,
+                'image_name' => 35456766876,
                 'email' => 'jirou12345@gmail.com',
                 'password' => bcrypt('test12345'),
                 'created_at' => date('Y-m-d H:i:s'),
