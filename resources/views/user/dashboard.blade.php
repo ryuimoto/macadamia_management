@@ -16,6 +16,8 @@
             <h6 class="card-text">
               @if ($working_days <= 0)
                 シフト入れました？
+              @elseif ($working_days > 1)
+                パソコンは明るい場所で触りましょう！
               @elseif ($working_days > 10)
                 あなたの頑張りはみんな見てますよ( ´ ▽ ` )
               @elseif ($working_days > 15)
@@ -37,6 +39,8 @@
             <h6 class="card-text">
               @if ($working_hours <= 0)
                 働かざるもの食うべからず！
+              @elseif ($working_hours > 1)
+                プログラミングって楽しいですよね＾＾
               @elseif ($working_hours > 50)
                 休憩もしっかりとってくださいね♡
               @elseif ($working_hours > 100)

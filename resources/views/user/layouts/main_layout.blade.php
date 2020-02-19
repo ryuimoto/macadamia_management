@@ -44,8 +44,11 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  {{-- <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="image"> --}}
-                  <img src="/storage/profile_images/{{ $username->image_name }}" alt="image">
+                  @if ($is_image)
+                    <img src="/storage/profile_images/{{ $username->image_name }}" alt="image">
+                  @else
+                    <img class="rounded-circle" src="{{ asset('img/dummy.png') }}" width="100" height="100" alt="profile">
+                  @endif
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
@@ -77,8 +80,11 @@
             <li class="nav-item nav-profile">
               <a href="{{ route('user.acount_edit') }}" class="nav-link">
                 <div class="nav-profile-image">
-                  {{-- <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="profile"> --}}
-                  <img src="/storage/profile_images/{{ $username->image_name }}" alt="image">
+                  @if ($is_image)
+                    <img src="/storage/profile_images/{{ $username->image_name }}" alt="image">
+                  @else
+                    <img class="rounded-circle" src="{{ asset('img/dummy.png') }}" width="100" height="100" alt="profile">
+                  @endif
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>

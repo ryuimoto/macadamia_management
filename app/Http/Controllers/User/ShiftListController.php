@@ -30,6 +30,7 @@ class ShiftListController extends Controller
         $month = $carbon->month;
         $my_shifts = Shift::where('user_id',$username->user('user')->id)
         ->whereMonth('date','=',$carbon->month)->orderBy('date')->paginate(5);
+
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
         $is_image = false;
@@ -53,6 +54,8 @@ class ShiftListController extends Controller
 
     public function put(Request $request)
     {
+        dd($request->all());
+
         if($request->delete)
         {
             return $this->delete($request);
