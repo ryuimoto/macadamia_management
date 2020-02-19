@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 use App\Status;
 use App\Shift;
@@ -29,17 +30,24 @@ class ShiftListController extends Controller
         $month = $carbon->month;
         $my_shifts = Shift::where('user_id',$username->user('user')->id)
         ->whereMonth('date','=',$carbon->month)->orderBy('date')->paginate(5);
-
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
+        $is_image = false;
+       
+        if (Storage::disk('local')->exists('public/profile_images/' . $username->user('user')->image_name))
+        {
+            $is_image = true;
+        }
+
         return view('user.shift_list')->with([
-            'username' => $username->user('user')->name,
+            'username' => $username->user('user'),
             'status' => $status,
             'shifts' => $shifts,
             'my_shifts' => $my_shifts,
             'weekday' => $weekday,
             'year' => $year,
             'month' => $month,
+            'is_image' => $is_image,
         ]);
     }
 

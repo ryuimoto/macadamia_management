@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 use App\Shift;
 use App\Status;
@@ -21,10 +22,17 @@ class EasyRegistrationController extends Controller
     {
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
+        $is_image = false;
         
+        if (Storage::disk('local')->exists('public/profile_images/' . $username->user('user')->image_name))
+        {
+            $is_image = true;
+        }
+
         return view('user.easy_registration')->with([
-            'username' => $username->user('user')->name,
+            'username' => $username->user('user'),
             'status' => $status,
+            'is_image' => $is_image,
         ]);
     }
 

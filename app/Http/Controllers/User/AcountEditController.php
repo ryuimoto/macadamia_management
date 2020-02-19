@@ -24,22 +24,20 @@ class AcountEditController extends Controller
         $statuses = Status::get();
         $status = Status::where('id',$username->user('user')->status_id)->first();
         $is_image = false;
-        $image_name = User::where('id',$username->user('user')->id)->first()->image_name;
-
-        if (Storage::disk('local')->exists('public/profile_images/' . $image_name))
+       
+        if (Storage::disk('local')->exists('public/profile_images/' . $username->user('user')->image_name))
         {
             $is_image = true;
         }
 
         return view('user.acount_edit')->with([
-            'username' => $username->user('user')->name,
+            'username' => $username->user('user'),
             'name' => $username->user('user')->name,
             'status_ids' => $username->user('user')->status_id,
             'statuses' => $statuses,
             'status' => $status,
             'email' => $username->user('user')->email,
             'is_image' => $is_image,
-            'image_name' => $image_name,
         ]);
     }
 

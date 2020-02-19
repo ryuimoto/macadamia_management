@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 use App\Status;
 use App\Shift;
@@ -23,6 +24,12 @@ class MonthlyAttendanceRecordController extends Controller
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
         $today = new Carbon();
+        $is_image = false;
+
+        if (Storage::disk('local')->exists('public/profile_images/' . $username->user('user')->image_name))
+        {
+            $is_image = true;
+        }
 
         $change_date =  new Carbon($date);
 
@@ -42,7 +49,7 @@ class MonthlyAttendanceRecordController extends Controller
         }
 
         return view('user.monthly_attendance_record')->with([
-            'username' =>  $username->user('user')->name,
+            'username' =>  $username->user('user'),
             'status' => $status,
             'weekday' => $weekday,
             'date' => $change_date,
@@ -50,6 +57,7 @@ class MonthlyAttendanceRecordController extends Controller
             'working_days' => $shifts->count(),
             'shifts' => $shifts->paginate(10),
             'total' => $total,
+            'is_image' => $is_image,
         ]);
     }
 }

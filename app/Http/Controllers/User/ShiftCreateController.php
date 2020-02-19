@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\LoggedInUser;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 use App\Status;
 use App\ShiftPettern;
@@ -26,6 +27,12 @@ class ShiftCreateController extends Controller
         $shift_petterns = ShiftPettern::where('user_id',$username->user('user')->id)->get();
 
         $shifts = Shift::where('user_id',$username->user('user')->id)->get();
+        $is_image = false;
+
+        if (Storage::disk('local')->exists('public/profile_images/' . $username->user('user')->image_name))
+        {
+            $is_image = true;
+        }
 
         // foreach($shifts as $shift)
         // {
@@ -34,12 +41,12 @@ class ShiftCreateController extends Controller
 
         // }
 
-
         return view('user.shift_create')->with([
-            'username' => $username->user('user')->name,
+            'username' => $username->user('user'),
             'status' => $status,
             'shift_petterns' =>  $shift_petterns,
             'shifts' => $shifts,
+            'is_image' => $is_image,
         ]);
     }
 

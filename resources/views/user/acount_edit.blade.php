@@ -35,7 +35,7 @@
                       <input type="file" name="image_name" hidden />
                       {{-- <img class="rounded-circle" src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="profile"> --}}
                       @if ($is_image)
-                        <img class="rounded-circle" src="/storage/profile_images/{{ $image_name }}" width="100" height="100" alt="profile">
+                        <img class="rounded-circle" src="/storage/profile_images/{{ $username->image_name }}" width="100" height="100" alt="profile">
                       @else
                         <img class="rounded-circle" src="{{ asset('img/dummy.png') }}" width="100" height="100" alt="profile">
                       @endif

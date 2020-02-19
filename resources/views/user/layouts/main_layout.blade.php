@@ -44,12 +44,12 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="image">
-                  {{-- <img src="/storage/profile_images/{{ Auth::id() }}.jpg" alt="image"> --}}
+                  {{-- <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="image"> --}}
+                  <img src="/storage/profile_images/{{ $username->image_name }}" alt="image">
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">{{ $username }}さん </p>
+                  <p class="mb-1 text-black">{{ $username->name }}さん </p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -77,12 +77,13 @@
             <li class="nav-item nav-profile">
               <a href="{{ route('user.acount_edit') }}" class="nav-link">
                 <div class="nav-profile-image">
-                  <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="profile">
+                  {{-- <img src="{{ asset('library/PurpleAdmin-Free-Admin-Template-master/assets/images/faces/face1.jpg') }}" alt="profile"> --}}
+                  <img src="/storage/profile_images/{{ $username->image_name }}" alt="image">
                   <span class="login-status online"></span>
                   <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">{{ $username }}さん</span>
+                  <span class="font-weight-bold mb-2">{{ $username->name }}さん</span>
                   <span class="text-secondary text-small">{{ $status->name }}</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>

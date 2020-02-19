@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Libraries\LoggedInUser;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 use App\Status;
 use App\Shift;
@@ -23,6 +24,12 @@ class DashBoardController extends Controller
         $username = new LoggedInUser;
         $status = Status::where('id',$username->user('user')->status_id)->first();
         $today = new Carbon();
+        $is_image = false;
+
+        if (Storage::disk('local')->exists('public/profile_images/' . $username->user('user')->image_name))
+        {
+            $is_image = true;
+        }
 
         $weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
@@ -52,7 +59,7 @@ class DashBoardController extends Controller
         }
 
         return view('user.dashboard')->with([
-            'username' => $username->user('user')->name,
+            'username' => $username->user('user'),
             'status' => $status,
             'today' => $today,
             'weekday' => $weekday,
@@ -60,6 +67,7 @@ class DashBoardController extends Controller
             'working_hours' => $working_hours,
             'working_days' => $shifts->count(),
             'annual_attendance' => $total,
+            'is_image' => $is_image
         ]);
     }
 }
