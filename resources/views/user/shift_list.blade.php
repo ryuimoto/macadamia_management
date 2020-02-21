@@ -122,6 +122,21 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+                        @if ($errors->has('date'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('date') }}</strong>
+                            </span>
+                        @endif
+                        @if ($errors->has('attendance'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('attendance') }}</strong>
+                            </span>
+                        @endif
+                        @if ($errors->has('leaving'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('leaving') }}</strong>
+                            </span>
+                        @endif
                         <h4 class="card-title">マイシフト</h4>
                         <table class="table table-striped">
                             <thead>
@@ -133,16 +148,24 @@
                             </thead>
                             <tbody>
                                 @forelse ($my_shifts as $my_shift)
-                                    <form id="{{ $my_shift->id }}" method="POST" action="{{ route('user.shift_list') }}">
+                                    <form id="{{ $my_shift->id }}" name="form1" method="POST" action="{{ route('user.shift_list') }}">
                                         @csrf
                                         @method('put')
                                         <tr>
                                             <td class="py-1">
+                                            <input type="hidden" name="old_date" value="{{ $my_shift->date }}">
                                             <input type="date" data-provide="datepicker" class="form-control form-control-sm" name="date" value="{{ $my_shift->date }}">
                                             </td>
                                             <td> <input type="time" name="attendance" class="form-control form-control-sm" value="{{ $my_shift->attendance }}"> </td>
                                             <td> <input type="time" name="leaving" class="form-control form-control-sm" value="{{ $my_shift->leaving }}"> </td>
                                             <td width="25%">
+                                            {{-- <button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">バトンタッチ</button>
+                                            <div class="dropdown-menu">
+                                                @forelse ($baton_passing_users as $baton_passing_user)
+                                                    <a class="dropdown-item" href="javascript:form1.submit()" value="{{ $baton_passing_user->id }}">{{ $baton_passing_user->name }}さん</a>
+                                                @empty
+                                                @endforelse
+                                            </div> --}}
                                             <button type="submit" class="btn btn-gradient-primary btn-fw" name="put" value="{{ $my_shift->id }}">編集</button>
                                             <button type="submit" class="btn btn-gradient-danger btn-fw" name="delete" value="{{ $my_shift->id }}">削除</button> 
                                             </td>

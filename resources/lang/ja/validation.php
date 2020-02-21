@@ -152,6 +152,7 @@ return [
         'weekday' => '曜日',
         'password' => 'パスワード',
         'status id' => 'ステータス',
+        'date' => '日付',
     ],
 
 ];

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Status;
 use App\Shift;
+use App\User;
 
 class ShiftListController extends Controller
 {
@@ -40,6 +41,8 @@ class ShiftListController extends Controller
             $is_image = true;
         }
 
+        // $baton_passing_users = User::where('id','!=',$username->user('user')->id)->get();
+
         return view('user.shift_list')->with([
             'username' => $username->user('user'),
             'status' => $status,
@@ -49,20 +52,30 @@ class ShiftListController extends Controller
             'year' => $year,
             'month' => $month,
             'is_image' => $is_image,
+            // 'baton_passing_users' => $baton_passing_users,
         ]);
     }
 
     public function put(Request $request)
     {
-        $request->validate([
-            'date' => 'unique:shifts,date',
-        ]);
+        if($request->date == $request->old_date){
+            $request->validate([
+                'attendance' => 'nullable|required|before:leaving',
+                'leaving' => 'nullable|required',
+            ]);
+        }else{
+            $request->validate([
+                'date' => 'unique:shifts,date',
+                'attendance' => 'nullable|required|before:leaving',
+                'leaving' => 'nullable|required',
+            ]);
+        }
+   
         if($request->delete)
         {
             return $this->delete($request);
-        }else{
-            
 
+        }else if($request->put or $request->user_id){
             Shift::where('id',$request->put)
             ->update([
                 'date' => $request->date,
