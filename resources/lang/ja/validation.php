@@ -153,6 +153,8 @@ return [
         'password' => 'パスワード',
         'status id' => 'ステータス',
         'date' => '日付',
+        'user_name' => '名前',
+        'email' => 'メールアドレス',
     ],
 
 ];

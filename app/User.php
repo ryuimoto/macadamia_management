@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function status()
     {
-        return $this->belongsTo('App\Status','id');
+        return $this->belongsTo('App\Status');
     }
 }

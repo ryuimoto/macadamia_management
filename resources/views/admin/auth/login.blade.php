@@ -18,10 +18,21 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">管理側　ログインフォーム</div>
 				<div class="panel-body">
-					<form role="form">
+					<form role="form" name="form1" method="POST" action="{{ route('admin.login') }}">
+						@csrf
 						<fieldset>
+							@if ($errors->has('email'))
+								<span class="help-block">
+								<strong>{{ $errors->first('email') }}</strong><br>
+								</span>
+							@endif
+							@if ($errors->has('password'))
+								<span class="help-block">
+									<strong>{{ $errors->first('password') }}</strong>
+								</span>
+							@endif
 							<div class="form-group">
-								<input class="form-control" placeholder="メールアドレス" name="email" type="email" autofocus="">
+								<input class="form-control" placeholder="メールアドレス" name="email" type="email" value="{{ old('email') }}" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="パスワード" name="password" type="password" value="">
@@ -31,7 +42,8 @@
 									<input name="remember" type="checkbox" value="Remember Me">Remember Me
 								</label>
 							</div>
-							<a href="index.html" class="btn btn-primary">ログイン</a></fieldset>
+							<a href="javascript:form1.submit()" class="btn btn-primary">ログイン</a>
+						</fieldset>
 					</form>
 				</div>
 			</div>

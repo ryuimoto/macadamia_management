@@ -67,9 +67,6 @@
                   <div class="mt-3">
                     <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="javascript:form1.submit()">アカウント作成</a>
                   </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                  </div>
                   <div class="text-center mt-4 font-weight-light"> アカウントをお持ちの方はこちらへ <a href="{{ route('user.login') }}" class="text-primary"><br>ログインする</a>
                   </div>
                 </form>
