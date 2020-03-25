@@ -15,11 +15,6 @@ class LoginController extends Controller
         return route('user.dashboard');
     }
 
-    public function __construct()
-    {
-        $this->middleware('guest:user')->except('logout');
-    }
-
     public function showLoginForm()
     {
         return view('user.auth.login');
