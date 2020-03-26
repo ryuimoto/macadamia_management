@@ -22,7 +22,7 @@
 Route::get('/login','User\Auth\LoginController@showLoginForm')->name('user.login');
 Route::post('/login','User\Auth\LoginController@login');
 
-Route::post('/logout','User\Auth\LoginController@logout')->name('user.logout');
+Route::get('/logout','User\Auth\LoginController@logout')->name('user.logout');
 
 Route::get('/register','User\Auth\RegisterController@showRegistrationForm')->name('user.register');
 Route::post('/register','User\Auth\RegisterController@register');
@@ -61,12 +61,12 @@ Route::middleware('auth:user')->group(function(){
 
 // 管理側
 Route::prefix('admin56765467654sgegmp68786')->group(function(){
-    Route::get('login','Admin\Auth\LoginController@showLoginForm')->name('admin.login');
-    Route::post('login','Admin\Auth\LoginController@login');
+    Route::get('/login','Admin\Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('/login','Admin\Auth\LoginController@login');
 
-    Route::get('logout','Admin\Auth\LoginController@logout')->name('admin.logout');
+    Route::get('/logout','Admin\Auth\LoginController@logout')->name('admin.logout');
 
-    Route::get('register','Admin\Auth\RegisterController@showRegistrationForm')->name('admin.register');
+    // Route::get('/register','Admin\Auth\RegisterController@showRegistrationForm')->name('admin.register');
     // Route::post('register','Admin\Auth\RegisterController@register');
 
     Route::middleware('auth:admin')->group(function(){
@@ -77,7 +77,7 @@ Route::prefix('admin56765467654sgegmp68786')->group(function(){
         Route::get('/staff_info_details/{user_id}','Admin\UserInformationDetailsController@index')->name('admin.staff_info_details');
         Route::put('/staff_info_details/{user_id}','Admin\UserInformationDetailsController@edit');
 
-        Route::get('/attendance_status','Admin\AttendanceStatusController@index')->name('admin.attendance_status');
+        Route::get('/attendance_status/{date}','Admin\AttendanceStatusController@index')->name('admin.attendance_status');
         
         Route::get('/notification_settings','Admin\NotificationSettingsController@index')->name('admin.notification_settings');
 

@@ -15,9 +15,11 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="">≪</a>
-                    ○年○月
-                    <a href="">≫</a>
+                    <?php $prev_date = new \Carbon\Carbon($date) ?>
+                    <a href="{{ route('admin.attendance_status',['date' =>$prev_date->subMonth()->format('Y年m月') ]) }}">≪</a>
+                    {{ $date->format('Y年m月') }}
+                    <?php $next_date = new \Carbon\Carbon($date) ?>
+                    <a href="{{ route('admin.attendance_status',['date' =>$next_date->addMonth()->format('Y年m月') ]) }}">≫</a>
                 </div>
             </div><!-- /.panel-->
         </div>
@@ -25,8 +27,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="panel position-relative">
-                <div class="panel-heading">ユーザー名
-                </div>
+                <div class="panel-heading">ユーザー名</div>
                 <div class="panel-body">
                     <div class="form-group position-relative">
                         <label>実労働時間</label>

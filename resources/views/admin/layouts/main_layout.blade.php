@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +54,8 @@
 		<ul class="nav menu">
 			<li id="dashboard"><a href="{{ route('admin.dashboard') }}"><em class="fa fa-dashboard">&nbsp;</em> ダッシュボード</a></li>
 			<li id="staff_info"><a href="{{ route('admin.staff_info') }}"><em class="fa fa-users">&nbsp;</em> スタッフ情報</a></li>
-			<li id="attendance_status"><a href="{{ route('admin.attendance_status') }}"><em class="fa fa-bar-chart">&nbsp;</em> 出勤状況</a></li>
+			<?php $date = new \Carbon\Carbon() ?>
+			<li id="attendance_status"><a href="{{ route('admin.attendance_status',['date' => $date->format('Y年m月')]) }}"><em class="fa fa-bar-chart">&nbsp;</em> 出勤状況</a></li>
 			<li id="notification_settings"><a href="{{ route('admin.notification_settings') }}"><em class="fa fa-toggle-off">&nbsp;</em> 通知設定</a></li>
 		</ul>
 	</div><!--/.sidebar-->

@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ShiftPetternsSeeder::class);
         $this->call(StatusesTsableSeeder::class);
         $this->call(AdminsTableSeeder::class);
+        $this->call(ShiftsTableSeeder::class);
     }
 }

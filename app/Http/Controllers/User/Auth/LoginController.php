@@ -20,8 +20,8 @@ class LoginController extends Controller
         return view('user.auth.login');
     }
 
-    public function logout(Request $request)
-    {
+    public function logout()
+    {        
         $this->guard('user')->logout();
 
         return redirect()->route('user.login');
