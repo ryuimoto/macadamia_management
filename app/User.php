@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','image_name', 'email', 'password',
+        'name','image_name', 'email', 'password','total_working_time',
     ];
 
     /**
@@ -41,4 +41,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Status');
     }
+
+    public function shifts()
+    {
+        return $this->belongsTo('App\Shift');
+
+        // $datas = $this->belongsTo('App\Shift');
+
+        // return $datas;
+
+
+    }
+
 }

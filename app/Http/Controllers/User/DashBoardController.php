@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Status;
 use App\Shift;
+use App\User;
+use App\AttendanceRecord;
 
 class DashBoardController extends Controller
 {
@@ -48,6 +50,11 @@ class DashBoardController extends Controller
             $working_hours += (strtotime($shift->attendance) - strtotime($shift->leaving)) / -3600;
         }
 
+        // AttendanceRecord::updateOrInsert(
+        //     ['user_id',$username->user('user')->status_id,'date' => $today],
+        //     ['total_working_hours',$working_hours,'total_working_days',$shifts->count()]
+        // );
+    
         $go_to_work_staffs = Shift::whereDate('date',$today)->get();
 
         for($i = 1; $i < 13; $i++)

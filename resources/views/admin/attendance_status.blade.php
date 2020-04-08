@@ -21,24 +21,32 @@
                     <?php $next_date = new \Carbon\Carbon($date) ?>
                     <a href="{{ route('admin.attendance_status',['date' =>$next_date->addMonth()->format('Y年m月') ]) }}">≫</a>
                 </div>
-            </div><!-- /.panel-->
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <div class="panel position-relative">
-                <div class="panel-heading">ユーザー名</div>
-                <div class="panel-body">
-                    <div class="form-group position-relative">
-                        <label>実労働時間</label>
-                        <p>○時間</p>
-                        <label>出勤日数</label>
-                        <p>○時間</p>
-                        <a class="stretched-link" href="">詳細</a>
+        @forelse ($users as $key => $user)
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">{{ $user->name }}</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label">総労働時間</label>
+                            <div class="col-md-6">
+                                <p>{{ $total_working_time[$key] }}時間</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-6 control-label">出勤日数</label>
+                            <div class="col-md-6">
+                                <p>{{ $working_days[$key] }}日</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>   
+        @empty
+        @endforelse
     </div>
 @endsection
 @section('script')

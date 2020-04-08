@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Shift;
 use App\Status;
+use App\User;
+use App\AttendanceRecord;
 
 class EasyRegistrationController extends Controller
 {
@@ -78,7 +80,28 @@ class EasyRegistrationController extends Controller
                         'leaving' => $request->leaving,
                         'date' => $week,
                     ]);
-               
+
+                    $today = new Carbon;
+
+                    $shifts = Shift::where('user_id',$username->user('user')->id)
+                    ->whereYear('date','=',$today->year)
+                    ->whereMonth('date','=',$today->month)
+                    ->where('date','<',$today)
+                    ->orderBy('date')->get();
+
+                    $working_hours = 0;
+                    
+                    foreach($shifts as $shift)
+                    {
+                        $working_hours += (strtotime($shift->attendance) - strtotime($shift->leaving)) / -3600;
+                    }
+
+                    AttendanceRecord::updateOrInsert([
+                        'user_id',$username->user('user')->status_id,
+                        'total_working_time' => $working_hours,
+                        'total_working_days' => $shifts->count(),
+                    ]);
+           
                 } catch (\Illuminate\Database\QueryException $e) {
         
                     $errorCode = $e->errorInfo[1];

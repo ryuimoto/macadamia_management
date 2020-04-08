@@ -11,15 +11,14 @@ class ShiftsTableSeeder extends Seeder
      */
     public function run()
     {
+        // factory(App\Shift::class,50)->create();
+
         DB::table('shifts')->insert([
             [
                 'user_id' => 1,
-                // 'status_id' => 1,
-                'attendance' => '13:00:00',
+                'attendance' => '10:00:00',
                 'leaving' => '18:00:00',
-                'date' => 2020-02-06,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'date' => 2020-04-11,
             ],
         ]);
     }
