@@ -81,6 +81,11 @@
                     <form action="{{ route('admin.notification_settings') }}" name="line_test" method="POST">
                         @csrf
                         <div class="form-group">
+                            @if (Session::has('line_post'))
+                                <div class="alert alert-success" role="alert">
+                                    <strong>{{ session('line_post') }}</strong>
+                                </div>
+                            @endif
                             <label>LINE</label>
                             <input type="text" class="form-control" name="line_text" placeholder="入力されたテキストが送信されます">
                         </div>

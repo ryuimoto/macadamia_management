@@ -32,10 +32,15 @@ class NotificationSettingsController extends Controller
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(config('line.line-access-token'));
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => config('line.line-channel-secret')]);
         
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($request->push_text);
-        $response = $bot->pushMessage('<to>', $textMessageBuilder);
-        
-        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($request->line_text);
+
+        $response = $bot->pushMessage('U43acfcbc373087f4de9afd6573c91e9e', $textMessageBuilder);
+
+        // echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+
+        return back()->with([
+            'line_post' => 'メッセージを送りました。LINEを確認してください'
+        ]);
 
     }
     
