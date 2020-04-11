@@ -61,8 +61,47 @@
                                 <option>25日</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>※通知するLINEチャンネルはLINE Developersから変更してください</label>
+                            <a href="https://developers.line.biz/ja/" target="_brank">https://developers.line.biz/ja/</a>
+                        </div>
                         <div class="form-group has-error">
                             <button type="button" class="btn btn-lg btn-primary">編集</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">通知テスト</div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <form action="{{ route('admin.notification_settings') }}" name="line_test" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label>LINE</label>
+                            <input type="text" class="form-control" name="line_text" placeholder="入力されたテキストが送信されます">
+                        </div>
+                        <div class="form-group">
+                            <label>※通知するLINEチャンネルはLINE Developersから変更してください</label>
+                            <a href="https://developers.line.biz/ja/" target="_brank">https://developers.line.biz/ja/</a>
+                        </div>
+                        <div class="form-group has-error">
+                            <button type="submit" class="btn btn-lg btn-success" name="line_test" value="line_test">送信</button>
+                        </div>
+                    </form>
+                    <form action="{{ route('admin.notification_settings') }}" name="mail_test" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label>メール</label>
+                            <input type="email" class="form-control" name="mail_address" placeholder="メールアドレス">
+                            <br>
+                            <input type="text" class="form-control" name="mail_text" placeholder="入力されたテキストが送信されます">
+                        </div>
+                        <div class="form-group has-error">
+                            <button type="submit" class="btn btn-lg btn-success" name="mail_test" value="mail_test">送信</button>
                         </div>
                     </form>
                 </div>
