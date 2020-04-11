@@ -19,7 +19,6 @@ class NotificationSettingsController extends Controller
 
     public function post(Request $request)
     {
-        // 
         if(isset($request->line_test))
         {
             return $this->lineTest($request);
@@ -30,6 +29,13 @@ class NotificationSettingsController extends Controller
 
     public function lineTest(Request $request)
     {
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(config('line.line-access-token'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => config('line.line-channel-secret')]);
+        
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($request->push_text);
+        $response = $bot->pushMessage('<to>', $textMessageBuilder);
+        
+        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
     }
     
