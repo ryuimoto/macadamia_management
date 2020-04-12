@@ -21,8 +21,8 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-blue panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-list-alt"></em>
-                        <div class="large">52</div>
-                        <div class="text-muted">本日出勤予定</div>
+                        <div class="large">{{ $scheduled_to_work_today }}</div>
+                        <div class="text-muted">本日出勤予定者</div>
                     </div>
                 </div>
             </div>

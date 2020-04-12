@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
 use LINE\LINEBot;
 use LINE\LINEBot\Event\MessageEvent\TextMessage;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+
+use Mail;
 
 class NotificationSettingsController extends Controller
 {
@@ -41,12 +42,20 @@ class NotificationSettingsController extends Controller
         return back()->with([
             'line_post' => 'メッセージを送りました。LINEを確認してください'
         ]);
-
     }
     
     public function mailTest(Request $request)
     {
+        // dd($request->all());
 
+        Mail::send('emails.test',$request->mail_text,function($message){
+            $message->to($request->mail_address, 'Test')
+            ->subject('送信確認メール');
+        });
+
+        return back()->with([
+            'mail_post' => 'メールを送信しました。確認してくみてください.',
+        ]);
     }
 
     public function lineBot(Request $request)
@@ -67,7 +76,8 @@ class NotificationSettingsController extends Controller
 
         Log::debug($events);
 
-        foreach ($events as $event) {
+        foreach ($events as $event) 
+        {
             if (!($event instanceof TextMessage)) {
                 Log::debug('Non text message has come');
                 continue;

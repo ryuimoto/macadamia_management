@@ -26,6 +26,7 @@ class DashBoardController extends Controller
         return view('admin.dashboard')->with([
             'users' => $users->count(),
             'go_to_work_staffs' => $go_to_work_staffs,
+            'scheduled_to_work_today' => $go_to_work_staffs->count(),
         ]);
     }
 }

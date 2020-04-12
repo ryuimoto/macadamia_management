@@ -65,6 +65,10 @@
                             <label>※通知するLINEチャンネルはLINE Developersから変更してください</label>
                             <a href="https://developers.line.biz/ja/" target="_brank">https://developers.line.biz/ja/</a>
                         </div>
+                        <div class="form-group">
+                            <label>内容</label>
+                            <textarea class="form-control" rows="3" placeholder="記入した内容に加え、スタッフの労働時間が記述されます。"></textarea>
+                        </div>
                         <div class="form-group has-error">
                             <button type="button" class="btn btn-lg btn-primary">編集</button>
                         </div>
