@@ -29,7 +29,6 @@ class Kernel extends ConsoleKernel
 
         // $schedule->command('TestParentNotification')
         // ->everyMinute();
-
     }
 
     /**

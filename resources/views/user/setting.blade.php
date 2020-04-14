@@ -17,13 +17,15 @@
                         <div class="col-sm-4">
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> 通知する </label>
+                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> 通知する 
+                            </label>
                           </div>
                         </div>
                         <div class="col-sm-5">
                           <div class="form-check">
                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> 通知しない </label>
+                              <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> 通知しない 
+                            </label>
                           </div>
                         </div>
                     </div>

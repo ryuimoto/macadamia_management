@@ -56,7 +56,6 @@ Route::middleware('auth:user')->group(function(){
     Route::put('/acount_edit','User\AcountEditController@edit');
 
     Route::get('/setting','User\SettingController@index')->name('user.setting');
-
 });
 
 // 管理側
