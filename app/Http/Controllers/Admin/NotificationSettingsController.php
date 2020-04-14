@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Log;
 use LINE\LINEBot;
 use LINE\LINEBot\Event\MessageEvent\TextMessage;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-
 use Mail;
+use Carbon\Carbon;
+
+use App\User;
+use App\Shift;
+use App\LineNotification;
 
 class NotificationSettingsController extends Controller
 {
@@ -25,23 +29,90 @@ class NotificationSettingsController extends Controller
             return $this->lineTest($request);
         }else if($request->mail_test){
             return $this->mailTest($request);
+        }else if(isset($request->line_setting))
+        {
+            return $this->lineSetting($request);
         }
     }
 
     public function lineTest(Request $request)
     {
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(config('line.line-access-token'));
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => config('line.line-channel-secret')]);
-        
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($request->line_text);
+        $httpClient = new CurlHTTPClient(config('line.line-access-token'));
+        $bot = new LINEBot($httpClient, ['channelSecret' => config('line.line-channel-secret')]);
 
-        $response = $bot->pushMessage('U43acfcbc373087f4de9afd6573c91e9e', $textMessageBuilder);
+        if(isset($request->send_working_hours))
+        {
+            $carbon = new Carbon('2020-04-01');
+            $today = new Carbon();
 
-        // echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+            $users = User::get();
+
+            $array = [];
+    
+            $working_days = [];
+    
+            foreach($users as $key => $user)
+            {
+                $result = 0;
+    
+                $shifts = Shift::where('user_id',$key+1)
+                ->whereYear('date','=',$carbon->year)
+                ->whereMonth('date','=',$carbon->month)
+                ->where('date','<',$today)->get();
+    
+                $working_days[] = $shifts->count();
+    
+                foreach($shifts as $shift)
+                {
+                    $result += (strtotime($shift->attendance) - strtotime($shift->leaving)) / -3600;
+                }
+    
+                $array[] = $result;
+            }
+
+            $data = '';
+            $greeting = "お疲れ様です。\n".$carbon->year."年".$carbon->month."月の出勤簿のデータを送ります。\n\n";
+
+            foreach($users as $key => $user)
+            {
+                $data .= $user->name." さんは";
+                $data .= $array[$key]."時間\n";
+
+                // $sentence = $user->name."さんは".$array[$key];
+            }
+
+            $sentence = $greeting.$data;
+
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($sentence);
+
+            $response = $bot->pushMessage('U43acfcbc373087f4de9afd6573c91e9e', $textMessageBuilder);
+
+        }else{
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($request->line_text);
+
+            $response = $bot->pushMessage('U43acfcbc373087f4de9afd6573c91e9e', $textMessageBuilder);
+        }
 
         return back()->with([
-            'line_post' => 'メッセージを送りました。LINEを確認してください'
+            'line_post' => 'メッセージを送りました。LINEを確認してください',
         ]);
+    }
+
+    public function lineSetting(Request $request)
+    {
+        $request->validate([
+            'contents' => 'max:144',
+        ]);
+
+        LineNotification::where('id',1)
+        ->update([
+            'notification_flag' => $request->notification_flag,
+            'contents' => $request->contents,
+            'sending_period_day' => $request->sending_period_day,
+            'sending_period_time' => $request->sending_period_time,
+        ]);
+
+        return back();
     }
     
     public function mailTest(Request $request)
@@ -57,37 +128,4 @@ class NotificationSettingsController extends Controller
             'mail_post' => 'メールを送信しました。確認してくみてください.',
         ]);
     }
-
-    public function lineBot(Request $request)
-    {
-        Log::debug($request->header());
-        Log::debug($request->input());
-
-        $httpClient = new CurlHTTPClient(config('line.line-access-token'));
-        $lineBot = new LINEBot($httpClient, ['channelSecret' => config('line.line-channel-secret')]);
-        
-        $signature = $request->header('x-line-signature');
-
-        if (!$lineBot->validateSignature($request->getContent(), $signature)) {
-            abort(400, 'Invalid signature');
-        }
-
-        $events = $lineBot->parseEventRequest($request->getContent(), $signature);
-
-        Log::debug($events);
-
-        foreach ($events as $event) 
-        {
-            if (!($event instanceof TextMessage)) {
-                Log::debug('Non text message has come');
-                continue;
-            }
-
-            $replyToken = $event->getReplyToken();
-            $replyText = $event->getText();
-            $lineBot->replyText($replyToken, $replyText);
-        }
-
-    }
-
 }

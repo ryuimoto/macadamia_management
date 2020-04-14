@@ -84,5 +84,5 @@ Route::prefix('admin56765467654sgegmp68786')->group(function(){
     });
 });
 
-Route::get('/push_test','PushTestController@index')->name('push_test');
+Route::get('/push_test','PushTestController@index')->name('push_test'); // test
 Route::post('/push_test','PushTestController@post');
