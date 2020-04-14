@@ -33,4 +33,11 @@ class SettingController extends Controller
             'is_image' => $is_image,
         ]);
     }
+
+    public function edit(Request $request)
+    {
+        dd($request->all());
+    }
+
+
 }
