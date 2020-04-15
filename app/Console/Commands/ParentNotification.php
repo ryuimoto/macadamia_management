@@ -48,7 +48,6 @@ class ParentNotification extends Command
     {
         $httpClient = new CurlHTTPClient(config('line.line-access-token'));
         $bot = new LINEBot($httpClient, ['channelSecret' => config('line.line-channel-secret')]);
-
         
     }
 }

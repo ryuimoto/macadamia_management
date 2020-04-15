@@ -73,6 +73,8 @@ class RegisterController extends Controller
             'status_id' => 1,
             'image_name' => 1, 
             'email' => $data['email'],
+            'line_notification' => 1,
+            'mail_notification' => 1,
             'password' => bcrypt($data['password']),
         ]);
     }

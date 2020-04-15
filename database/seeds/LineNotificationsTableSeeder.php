@@ -12,7 +12,8 @@ class LineNotificationsTableSeeder extends Seeder
     public function run()
     {
         DB::table('line_notifications')->insert([
-            'user_id' => 'U43acfcbc373087f4de9afd6573c91e9e',
+            'user_id' => 1,
+            'line_user_id' => 'U43acfcbc373087f4de9afd6573c91e9e',
             'contents' => 'これはテスト',
             'notification_flag' => true,
             'sending_period_day' => 1,

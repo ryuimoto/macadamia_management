@@ -15,7 +15,8 @@ class CreateLineNotificationsTable extends Migration
     {
         Schema::create('line_notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
+            $table->integer('user_id');
+            $table->string('line_user_id');
             $table->text('contents');
             $table->boolean('notification_flag');
             $table->integer('sending_period_day');

@@ -19,7 +19,7 @@
                       <div class="col-sm-4">
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="mail_end_of_month_notification" id="membershipRadios1" value="1" checked> 通知する 
+                            <input type="radio" class="form-check-input" name="mail_end_of_month_notification" id="membershipRadios1" value="1"> 通知する 
                           </label>
                         </div>
                       </div>
@@ -41,13 +41,13 @@
                     <div class="col-sm-4">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="line_end_of_month_notification" id="membershipRadios1" value="1" checked> 通知する </label>
+                          <input type="radio" class="form-check-input" name="line_end_of_month_notification" value="1"> 通知する </label>
                       </div>
                     </div>
                     <div class="col-sm-5">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="line_end_of_month_notification" id="membershipRadios2" value="0"> 通知しない </label>
+                          <input type="radio" class="form-check-input" name="line_end_of_month_notification" value="0"> 通知しない </label>
                       </div>
                     </div>
                   </div>
@@ -55,8 +55,28 @@
               </div>
               <button type="submit" class="btn btn-gradient-primary mr-2">編集する</button>
             </form>
-            
           </div>
         </div>
       </div>
+@endsection
+@section('js')
+  <script>
+  $(function() {
+    var mail_notification = '<?php echo $mail_end_of_month_notification;?>';
+    var line_notification ='<?php echo $line_end_of_month_notification;?>';
+    
+    if(mail_notification == true){
+      $('input[name="mail_end_of_month_notification"][value="1"]').prop('checked', true);
+    }else{
+      $('input[name="mail_end_of_month_notification"][value="0"]').prop('checked', true);
+    }
+
+    if(line_notification == true){
+      $('input[name="line_end_of_month_notification"][value="1"]').prop('checked', true);
+    }else{
+      $('input[name="line_end_of_month_notification"][value="0"]').prop('checked', true);
+    }
+  });
+ 
+  </script>
 @endsection

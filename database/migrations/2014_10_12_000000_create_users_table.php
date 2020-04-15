@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->integer('status_id');
             $table->string('image_name');
             $table->string('email')->unique();
+            $table->boolean('line_notification');
+            $table->boolean('mail_notification');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
