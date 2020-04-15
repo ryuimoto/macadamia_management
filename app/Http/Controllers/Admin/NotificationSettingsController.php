@@ -86,6 +86,7 @@ class NotificationSettingsController extends Controller
             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($sentence);
 
             $response = $bot->pushMessage('U43acfcbc373087f4de9afd6573c91e9e', $textMessageBuilder);
+            // $response = $bot->pushMessage('U7f79978a6766f639f7a008015a601300', $textMessageBuilder); // 川内さん
 
         }else{
             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($request->line_text);
@@ -117,8 +118,7 @@ class NotificationSettingsController extends Controller
     
     public function mailTest(Request $request)
     {
-        // dd($request->all());
-
+        
         Mail::send('emails.test',$request->mail_text,function($message){
             $message->to($request->mail_address, 'Test')
             ->subject('送信確認メール');

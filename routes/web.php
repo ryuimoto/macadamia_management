@@ -78,11 +78,10 @@ Route::prefix('admin56765467654sgegmp68786')->group(function(){
         Route::put('/staff_info_details/{user_id}','Admin\UserInformationDetailsController@edit');
 
         Route::get('/attendance_status/{date}','Admin\AttendanceStatusController@index')->name('admin.attendance_status');
+
+        Route::get('/line_Notification_pegging','Admin\LineNotificationPeggingController@index')->name('admin.line_notification_pegging');
         
         Route::get('/notification_settings','Admin\NotificationSettingsController@index')->name('admin.notification_settings');
         Route::post('/notification_settings','Admin\NotificationSettingsController@post');
     });
 });
-
-Route::get('/push_test','PushTestController@index')->name('push_test'); // test
-Route::post('/push_test','PushTestController@post');

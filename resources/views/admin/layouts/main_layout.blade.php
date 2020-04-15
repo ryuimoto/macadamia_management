@@ -56,6 +56,7 @@
 			<li id="staff_info"><a href="{{ route('admin.staff_info') }}"><em class="fa fa-users">&nbsp;</em> スタッフ情報</a></li>
 			<?php $date = new \Carbon\Carbon() ?>
 			<li id="attendance_status"><a href="{{ route('admin.attendance_status',['date' => $date->format('Y年m月')]) }}"><em class="fa fa-bar-chart">&nbsp;</em> 出勤状況</a></li>
+			<li id="line_notification_pegging"><a href="{{ route('admin.line_notification_pegging') }}"><em class="fa fa-comments">&nbsp;</em> LINE通知紐付け</a></li>
 			<li id="notification_settings"><a href="{{ route('admin.notification_settings') }}"><em class="fa fa-toggle-off">&nbsp;</em> 通知設定</a></li>
 		</ul>
 	</div><!--/.sidebar-->
