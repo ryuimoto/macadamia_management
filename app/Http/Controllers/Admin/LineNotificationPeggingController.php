@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\NotificationRequest;
 use App\User;
+use App\SuperVisor;
 
 class LineNotificationPeggingController extends Controller
 {
@@ -30,14 +31,16 @@ class LineNotificationPeggingController extends Controller
             $persons = User::get();
         }else if($branch->supervisor_flag == true)
         {
-            // $persons = 
+            $persons = SuperVisor::get();
         }
 
-        
-
         return view('admin/line_notification_pegging_details')->with([
-            'users' => $persons,
-
+            'persons' => $persons,
         ]);
+    }
+
+    public function post()
+    {
+    
     }
 }

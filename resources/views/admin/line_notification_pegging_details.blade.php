@@ -11,15 +11,14 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Forms</div>
                 <div class="panel-body">
                     <div class="form-group">
                         <label>スタッフを選択してください</label>
-                        <select class="form-control">
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                            <option>Option 4</option>
+                        <select class="form-control" name="person">
+                            @forelse ($persons as $person)
+                                <option value={{ $person->id }}>{{ $person->name }}</option>
+                            @empty
+                            @endforelse
                         </select>
                     </div>
                     <div class="form-group">

@@ -78,6 +78,11 @@ Route::prefix('admin56765467654sgegmp68786')->group(function(){
         Route::put('/staff_info_details/{user_id}','Admin\UserInformationDetailsController@edit');
 
         Route::get('/super_visor','Admin\SuperVisorController@index')->name('admin.super_visor');
+        Route::post('/super_visor','Admin\SuperVisorController@register');
+        Route::put('/super_visor','Admin\SuperVisorController@edit');
+
+
+        Route::get('/super_visor/details/{id}','Admin\SuperVisorController@details')->name('admin.super_visor_details');
 
         Route::get('/attendance_status/{date}','Admin\AttendanceStatusController@index')->name('admin.attendance_status');
 

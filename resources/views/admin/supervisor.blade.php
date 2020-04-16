@@ -13,14 +13,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Forms</div>
                 <div class="panel-body">
-                    <form action="" method="post">
+                    <form action="{{ route('admin.super_visor') }}" method="post">
+                        @csrf
                         <div class="form-group">
                             <label>名前</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="name">
                         </div>
                         <div class="form-group">
                             <label>メールアドレス</label>
-                            <input type="email" class="form-control">
+                            <input type="email" class="form-control" name="email">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">登録</button>
@@ -40,10 +41,13 @@
                         <div class="article border-bottom">
                             <div class="col-xs-12">
                                 <div class="row">
-                                    <div class="col-xs-12 col-md-12">
-                                        <h4><a href="#">田中太郎さん</a></h4>
-                                        <p>weggrgg@gmail.com</p>
-                                    </div>
+                                    @forelse ($super_visors as $super_visor)
+                                        <div class="col-xs-12 col-md-12">
+                                            <h4><a href="{{ route('admin.super_visor_details',$super_visor->id) }}">{{ $super_visor->name }}</a></h4>
+                                            <p>{{ $super_visor->email }}</p>
+                                        </div>
+                                    @empty
+                                    @endforelse
                                 </div>
                             </div>
                             <div class="clear"></div>
