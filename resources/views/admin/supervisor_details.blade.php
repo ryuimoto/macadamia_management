@@ -32,3 +32,8 @@
         </div>
     </div>
 @endsection
+@section('script')
+<script>
+    $("#super_visor").addClass("active");
+</script>
+@endsection

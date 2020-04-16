@@ -11,7 +11,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Forms</div>
                 <div class="panel-body">
                     <form action="{{ route('admin.super_visor') }}" method="post">
                         @csrf

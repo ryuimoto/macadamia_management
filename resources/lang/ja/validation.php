@@ -155,6 +155,8 @@ return [
         'date' => '日付',
         'user_name' => '名前',
         'email' => 'メールアドレス',
+        'line_displayname' => 'LINEのアカウント名',
+        'line_user_id' => 'LINEのUser_id'
     ],
 
 ];
