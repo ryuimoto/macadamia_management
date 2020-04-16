@@ -13,6 +13,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+            <h2>ユーザー</h2>
             <div class="panel panel-default ">
                 <div class="panel-heading">
                     新着
@@ -22,7 +23,34 @@
                         <li>
                             <div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
                             <div class="timeline-panel">
-                                <a href="">
+                                <a href="{{ route('admin.line_notification_pegging_details','user_id => 1') }}">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">田中たけし</h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>Ltwetwetwgergegeryqwt.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>スーパーバイザー</h2>
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    新着
+                    <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+                <div class="panel-body timeline-container">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
+                            <div class="timeline-panel">
+                                <a href="{{ route('admin.line_notification_pegging_details','user_id => 1') }}">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">田中たけし</h4>
                                     </div>

@@ -81,6 +81,8 @@ Route::prefix('admin56765467654sgegmp68786')->group(function(){
 
         Route::get('/line_Notification_pegging','Admin\LineNotificationPeggingController@index')->name('admin.line_notification_pegging');
         
+        Route::get('/line_Notification_pegging/{user_id}','Admin\LineNotificationPeggingController@details')->name('admin.line_notification_pegging_details');
+        
         Route::get('/notification_settings','Admin\NotificationSettingsController@index')->name('admin.notification_settings');
         Route::post('/notification_settings','Admin\NotificationSettingsController@post');
     });

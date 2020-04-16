@@ -11,4 +11,9 @@ class LineNotificationPeggingController extends Controller
     {
         return view('admin.line_notification_pegging');
     }
+
+    public function details()
+    {
+        return view('admin/line_notification_pegging_details');
+    }
 }
