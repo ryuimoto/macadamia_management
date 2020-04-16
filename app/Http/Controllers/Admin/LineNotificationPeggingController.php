@@ -36,7 +36,7 @@ class LineNotificationPeggingController extends Controller
         
 
         return view('admin/line_notification_pegging_details')->with([
-            'users' => $users,
+            'users' => $persons,
 
         ]);
     }
