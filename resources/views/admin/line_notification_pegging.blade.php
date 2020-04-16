@@ -50,21 +50,25 @@
                     新着
                     <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
                 <div class="panel-body timeline-container">
-                    <ul class="timeline">
-                        <li>
-                            <div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
-                            <div class="timeline-panel">
-                                <a href="{{ route('admin.line_notification_pegging_details','user_id => 1') }}">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title">田中たけし</h4>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>Ltwetwetwgergegeryqwt.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
+                    @forelse ($notification_supervisors as $notification_supervisor)
+                        <ul class="timeline">
+                            <li>
+                                <div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
+                                <div class="timeline-panel">
+                                    <a href="{{ route('admin.line_notification_pegging_details','user_id => 1') }}">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">{{ $notification_supervisor->line_displayname }}</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>{{ $notification_supervisor->line_user_id }}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    @empty
+                        <p>依頼はありません</p>
+                    @endforelse
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-blue panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
-                        <div class="large">{{ $scheduled_to_work_today }}</div>
+                        <div class="large">{{ $notification_request }}</div>
                         <div class="text-muted">LINE通知紐付け依頼</div>
                     </div>
                 </div>
