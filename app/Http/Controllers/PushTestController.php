@@ -20,34 +20,48 @@ class PushTestController extends Controller
 
     public function parrot(Request $request)
     {
+
+        // Log::debug($request->all());
+
         Log::debug($request->header());
         Log::debug($request->input());
+        
+        if($request->input()['events'][0]['message']['text'] == 'ユーザー通知依頼')
+        {
+            // Log::debug('通知きてる');
+            
 
-        // $httpClient = new CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
-        $httpClient = new CurlHTTPClient('N8gAdfGdUxIzyd1V1RiElplZpfK/hIGw6IqQWfqxyMxcoqbm2RbxLTepzpSNhSd0uDpQnJsVJvyw+2sPhmCpsyzBFbcBQ9qO+u9b51izFrHm6nLXWU6TcE1CSwamHJyX+JvgPXom9fSPgddY9Z0XAQdB04t89/1O/w1cDnyilFU=');
-        // $lineBot = new LINEBot($httpClient, ['channelSecret' => env('LINE_CHANNEL_SECRET')]);
-        $lineBot = new LINEBot($httpClient, ['channelSecret' => 'e05c0d5ef7904f3c74605cfbd96ac1da']);
-
-        $signature = $request->header('x-line-signature');
-
-        if (!$lineBot->validateSignature($request->getContent(), $signature)) {
-            abort(400, 'Invalid signature');
+        }else if($request->input()['events'][0]['message']['text'] == 'スーパーバイザー通知依頼'){
+            // Log::debug('通知きてない');
         }
 
-        $events = $lineBot->parseEventRequest($request->getContent(), $signature);
+        
 
-        Log::debug($events);
+        // // $httpClient = new CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
+        // $httpClient = new CurlHTTPClient('N8gAdfGdUxIzyd1V1RiElplZpfK/hIGw6IqQWfqxyMxcoqbm2RbxLTepzpSNhSd0uDpQnJsVJvyw+2sPhmCpsyzBFbcBQ9qO+u9b51izFrHm6nLXWU6TcE1CSwamHJyX+JvgPXom9fSPgddY9Z0XAQdB04t89/1O/w1cDnyilFU=');
+        // // $lineBot = new LINEBot($httpClient, ['channelSecret' => env('LINE_CHANNEL_SECRET')]);
+        // $lineBot = new LINEBot($httpClient, ['channelSecret' => 'e05c0d5ef7904f3c74605cfbd96ac1da']);
 
-        foreach ($events as $event) {
-            if (!($event instanceof TextMessage)) {
-                Log::debug('Non text message has come');
-                continue;
-            }
+        // $signature = $request->header('x-line-signature');
 
-            $replyToken = $event->getReplyToken();
-            $replyText = $event->getText();
-            $lineBot->replyText($replyToken, $replyText);
-        }
+        // if (!$lineBot->validateSignature($request->getContent(), $signature)) {
+        //     abort(400, 'Invalid signature');
+        // }
+
+        // $events = $lineBot->parseEventRequest($request->getContent(), $signature);
+
+        // Log::debug($events);
+
+        // foreach ($events as $event) {
+        //     if (!($event instanceof TextMessage)) {
+        //         Log::debug('Non text message has come');
+        //         continue;
+        //     }
+
+        //     $replyToken = $event->getReplyToken();
+        //     $replyText = $event->getText();
+        //     $lineBot->replyText($replyToken, $replyText);
+        // }
     }
 
     public function getUser(Request $request)
