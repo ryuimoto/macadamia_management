@@ -15,6 +15,11 @@
                     <form action="{{ route('admin.line_notification_pegging_details',$request_id) }}" method="POST">
                         @csrf
                         <div class="form-group">
+                            @if (session('pegging_done'))
+                                <div class="alert alert-success">
+                                    {{ session('pegging_done') }}
+                                </div>
+                            @endif
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>

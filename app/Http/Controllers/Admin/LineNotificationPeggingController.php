@@ -53,6 +53,10 @@ class LineNotificationPeggingController extends Controller
             'line_user_id' => $request->line_user_id,
         ]);
 
-        return back();
+        NotificationRequest::where('line_user_id',$request->line_user_id)->delete();
+
+        return redirect()->route('admin.line_notification_pegging')->with([
+            'pegging_done' => 'LINEアカウントを紐付けしました',
+        ]);
     }
 }
