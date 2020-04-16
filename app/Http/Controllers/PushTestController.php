@@ -9,7 +9,10 @@ use LINE\LINEBot;
 use LINE\LINEBot\Event\MessageEvent\TextMessage;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ContainerBuilder\CarouselContainerBuilder;
+
+use App\NotificationRequest;
 
 class PushTestController extends Controller
 {
@@ -25,14 +28,50 @@ class PushTestController extends Controller
 
         Log::debug($request->header());
         Log::debug($request->input());
-        
-        if($request->input()['events'][0]['message']['text'] == 'ユーザー通知依頼')
-        {
-            // Log::debug('通知きてる');
-            
 
-        }else if($request->input()['events'][0]['message']['text'] == 'スーパーバイザー通知依頼'){
-            // Log::debug('通知きてない');
+        $httpClient =  new CurlHTTPClient(config('line.line-access-token'));
+        $lineBot = new LINEBot($httpClient,['channelSecret' => config('line.line-channel-secret')]);
+
+        $user_id = $request->input()['events'][0]['source']['userId'];
+        $response = $lineBot->getProfile($user_id);
+        
+        $search_data = NotificationRequest::where('line_user_id',$user_id)->first();
+
+        if(!isset($search_data))
+        {
+            if($request->input()['events'][0]['message']['text'] == 'ユーザー通知依頼')
+            {
+                if ($response->isSucceeded()) {
+                    $profile = $response->getJSONDecodedBody();
+    
+                    NotificationRequest::create([
+                        'line_displayname' => $profile['displayName'],
+                        'line_user_id' => $user_id,
+                        'user_flag' => true,
+                        'supervisor_flag' => false,
+                    ]);            
+                }
+    
+            }else if($request->input()['events'][0]['message']['text'] == 'スーパーバイザー通知依頼'){
+                if ($response->isSucceeded()) {
+                    $profile = $response->getJSONDecodedBody();
+    
+                    NotificationRequest::create([
+                        'line_displayname' => $profile['displayName'],
+                        'line_user_id' => $user_id,
+                        'user_flag' => false,
+                        'supervisor_flag' => true,
+                    ]);            
+                }
+            }
+        }else{
+            $error_message = "承認済み、または以前に通知依頼を送った可能性があります。\n管理者に確認してみてください。";
+
+            $textMessageBuilder = new TextMessageBuilder($error_message);
+
+            $reply_text = $lineBot->pushMessage('U43acfcbc373087f4de9afd6573c91e9e',$textMessageBuilder);
+
+
         }
 
         

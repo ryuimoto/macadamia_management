@@ -15,6 +15,10 @@ class CreateNotificationRequestsTable extends Migration
     {
         Schema::create('notification_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('line_displayname');
+            $table->string('line_user_id');
+            $table->boolean('user_flag');
+            $table->boolean('supervisor_flag');
             $table->timestamps();
         });
     }
