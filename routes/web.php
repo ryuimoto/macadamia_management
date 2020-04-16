@@ -77,11 +77,13 @@ Route::prefix('admin56765467654sgegmp68786')->group(function(){
         Route::get('/staff_info_details/{user_id}','Admin\UserInformationDetailsController@index')->name('admin.staff_info_details');
         Route::put('/staff_info_details/{user_id}','Admin\UserInformationDetailsController@edit');
 
+        Route::get('/super_visor','Admin\SuperVisorController@index')->name('admin.super_visor');
+
         Route::get('/attendance_status/{date}','Admin\AttendanceStatusController@index')->name('admin.attendance_status');
 
         Route::get('/line_Notification_pegging','Admin\LineNotificationPeggingController@index')->name('admin.line_notification_pegging');
         
-        Route::get('/line_Notification_pegging/{user_id}','Admin\LineNotificationPeggingController@details')->name('admin.line_notification_pegging_details');
+        Route::get('/line_Notification_pegging/{request_id}','Admin\LineNotificationPeggingController@details')->name('admin.line_notification_pegging_details');
         
         Route::get('/notification_settings','Admin\NotificationSettingsController@index')->name('admin.notification_settings');
         Route::post('/notification_settings','Admin\NotificationSettingsController@post');

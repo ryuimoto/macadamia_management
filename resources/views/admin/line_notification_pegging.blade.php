@@ -24,7 +24,7 @@
                             <li>
                                 <div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
                                 <div class="timeline-panel">
-                                    <a href="{{ route('admin.line_notification_pegging_details','user_id => 1') }}">
+                                    <a href="{{ route('admin.line_notification_pegging_details',$notification_user->id) }}">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">{{ $notification_user->line_displayname }}</h4>
                                         </div>
@@ -55,7 +55,7 @@
                             <li>
                                 <div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
                                 <div class="timeline-panel">
-                                    <a href="{{ route('admin.line_notification_pegging_details','user_id => 1') }}">
+                                    <a href="{{ route('admin.line_notification_pegging_details',$notification_supervisor->id) }}">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">{{ $notification_supervisor->line_displayname }}</h4>
                                         </div>

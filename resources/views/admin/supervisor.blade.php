@@ -1,0 +1,9 @@
+@extends('admin.layouts.main_layout')
+@section('title')
+    MM管理画面|スーパーバイザー登録
+@endsection
+@section('script')
+<script>
+    $("#super_visor").addClass("active");
+</script>
+@endsection

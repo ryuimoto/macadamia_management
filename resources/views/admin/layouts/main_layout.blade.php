@@ -54,6 +54,7 @@
 		<ul class="nav menu">
 			<li id="dashboard"><a href="{{ route('admin.dashboard') }}"><em class="fa fa-dashboard">&nbsp;</em> ダッシュボード</a></li>
 			<li id="staff_info"><a href="{{ route('admin.staff_info') }}"><em class="fa fa-users">&nbsp;</em> スタッフ情報</a></li>
+			<li id="super_visor"><a href="{{ route('admin.super_visor') }}"><em class="fa fa-clone">&nbsp;</em> スーパーバイザー登録</a></li>
 			<?php $date = new \Carbon\Carbon() ?>
 			<li id="attendance_status"><a href="{{ route('admin.attendance_status',['date' => $date->format('Y年m月')]) }}"><em class="fa fa-bar-chart">&nbsp;</em> 出勤状況</a></li>
 			<li id="line_notification_pegging"><a href="{{ route('admin.line_notification_pegging') }}"><em class="fa fa-comments">&nbsp;</em> LINE通知紐付け</a></li>
