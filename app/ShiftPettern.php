@@ -15,6 +15,9 @@ class ShiftPettern extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'user_id','attendance', 'leaving',
+        'name',
+        'user_id',
+        'attendance',
+        'leaving',
     ];
 }

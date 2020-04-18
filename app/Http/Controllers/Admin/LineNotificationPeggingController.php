@@ -48,11 +48,22 @@ class LineNotificationPeggingController extends Controller
             'line_user_id' => 'unique:users',
         ]);
 
-        User::where('id',$request->person)->update([
-            'line_displayname' => $request->line_displayname,
-            'line_user_id' => $request->line_user_id,
-        ]);
+        $notification_request = NotificationRequest::where('line_user_id',$request->line_user_id)->first();
 
+        if($notification_request->user_flag == true)
+        {
+            User::where('id',$request->person)->update([
+                'line_displayname' => $request->line_displayname,
+                'line_user_id' => $request->line_user_id,
+            ]);
+    
+        }else if($notification_request->supervisor_flag == true){
+            SuperVisor::where('id',$request->person)->update([
+                'line_displayname' => $request->line_displayname,
+                'line_user_id' => $request->line_user_id,
+            ]);
+        }
+       
         NotificationRequest::where('line_user_id',$request->line_user_id)->delete();
 
         return redirect()->route('admin.line_notification_pegging')->with([

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuperVisorsTable extends Migration
+class CreateMailNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateSuperVisorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('super_visors', function (Blueprint $table) {
+        Schema::create('mail_notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->boolean('notification_flag');
             $table->string('email');
-            $table->boolean('line_notification');
-            $table->boolean('mail_notification');
-            $table->string('line_displayname')->nullable()->unique();
-            $table->string('line_user_id')->nullable()->unique();
+            $table->integer('day_of_the_day');
+            $table->time('day_of_the_time');
+            $table->text('contents');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateSuperVisorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('super_visors');
+        Schema::dropIfExists('mail_notifications');
     }
 }

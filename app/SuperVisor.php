@@ -10,7 +10,10 @@ class SuperVisor extends Model
     use Notifiable;
 
     protected $fillable = [
-        'name','email','line_notification','mail_notification',
+        'name',
+        'email',
+        'line_notification',
+        'mail_notification',
     ];
 
 }

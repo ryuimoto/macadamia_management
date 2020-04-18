@@ -13,27 +13,61 @@
             <div class="panel-heading">メール通知</div>
             <div class="panel-body">
                 <div class="col-md-12">
-                    <form role="form">
+                    <form action="{{ route('admin.notification_settings') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label>メール通知</label>
-                            <select class="form-control">
-                                <option>ON</option>
-                                <option>OFF</option>
+                            <select class="form-control" name="notification_flag">
+                                <option value="1">ON</option>
+                                <option value="0">OFF</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>通知する相手を登録</label>
-                            <input type="email" class="form-control" placeholder="メールアドレス">
+                            <label>通知するメールアドレスを登録</label>
+                            <input type="email" class="form-control" name="email" value="{{ $default_mail_setting->email }}" placeholder="メールアドレス">
                         </div>
                         <div class="form-group">
                             <label>クライアントに月末の通知を送る(※毎月の日にちを指定)</label>
-                            <select class="form-control">
-                                <option>25日</option>
-                                <option>27日</option>
+                            <select class="form-control" name="day_of_the_day"> 
+                                <option value="25">25日</option>
+                                <option value="27">27日</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>通知する時間</label>
+                            <select class="form-control" name="day_of_the_time">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>文章</label>
+                            <textarea class="form-control" name="contents" rows="3">{{ $default_mail_setting->contents }}</textarea>
+                        </div>
                         <div class="form-group has-error">
-                            <button type="button" class="btn btn-lg btn-primary">編集</button>
+                            <button type="submit" class="btn btn-lg btn-primary" name="mail_setting" value="mail_setting">編集</button>
                         </div>
                     </form>
                 </div>
@@ -56,8 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label>クライアントに月末の通知を送る(※毎月の日にちを指定)</label>
-                            <select class="form-control" name="sending_period_day">
-                                <option value="0">通知しない</option>
+                            <select class="form-control" name="day_of_the_day">
                                 <option value="21">21日</option>
                                 <option value="25">25日</option>
                                 <option value="27">27日</option>
@@ -65,7 +98,7 @@
                         </div>
                         <div class="form-group">
                             <label>通知する時間</label>
-                            <select class="form-control" name="sending_period_time">
+                            <select class="form-control" name="day_of_the_time">
                                 <option value="00">00</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -94,7 +127,7 @@
                         </div>
                         <div class="form-group">
                             <label>内容</label>
-                            <textarea class="form-control" rows="3" name="contents" placeholder="記入した内容に加え、スタッフの労働時間が記述されます。"></textarea>
+                            <textarea class="form-control" rows="3" name="contents" placeholder="記入した内容に加え、スタッフの労働時間が記述されます。">{{ $detault_line_setting->contents }}</textarea>
                         </div>
                         <div class="form-group has-error">
                             <button type="submit" class="btn btn-lg btn-primary" name="line_setting" value="line_setting">編集</button>

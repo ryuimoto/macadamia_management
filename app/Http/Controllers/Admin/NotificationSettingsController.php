@@ -14,12 +14,19 @@ use Carbon\Carbon;
 use App\User;
 use App\Shift;
 use App\LineNotification;
+use App\MailNotification;
 
 class NotificationSettingsController extends Controller
 {
     public function index()
     {
-        return view('admin.notification_settings');
+        $detault_line_setting = LineNotification::first();
+        $default_mail_setting = MailNotification::first();
+
+        return view('admin.notification_settings')->with([
+            'detault_line_setting' => $detault_line_setting,
+            'default_mail_setting' => $default_mail_setting,
+        ]);
     }
 
     public function post(Request $request)
@@ -32,6 +39,8 @@ class NotificationSettingsController extends Controller
         }else if(isset($request->line_setting))
         {
             return $this->lineSetting($request);
+        }else if(isset($request->mail_setting)){
+            return $this->mailSetting($request);
         }
     }
 
@@ -102,15 +111,15 @@ class NotificationSettingsController extends Controller
     public function lineSetting(Request $request)
     {
         $request->validate([
-            'contents' => 'max:144',
+            'contents' => 'max:144',  
         ]);
 
         LineNotification::where('id',1)
         ->update([
             'notification_flag' => $request->notification_flag,
+            'day_of_the_day' => $request->day_of_the_day,
+            'day_of_the_time' => $request->day_of_the_time,
             'contents' => $request->contents,
-            'sending_period_day' => $request->sending_period_day,
-            'sending_period_time' => $request->sending_period_time,
         ]);
 
         return back();
@@ -128,4 +137,22 @@ class NotificationSettingsController extends Controller
             'mail_post' => 'メールを送信しました。確認してくみてください.',
         ]);
     }
+
+    public function mailSetting(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'contentent' => 'requiremax:144',
+        ]);
+
+        MailNotification::where('id',1)->update([
+            'notification_flag' => $request->notification_flag,
+            'day_of_the_day' => $request->day_of_the_day,
+            'day_of_the_time' => $request->day_of_the_time,
+            'contents' => $request->contents,
+        ]);
+
+        return back();
+    }
+    
 }
