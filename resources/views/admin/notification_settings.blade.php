@@ -24,13 +24,13 @@
                         </div>
                         <div class="form-group">
                             <label>通知するメールアドレスを登録</label>
-                            <input type="email" class="form-control" name="email" value="{{ $default_mail_setting->email }}" placeholder="メールアドレス">
+                            <input type="email" class="form-control" name="email" value="" placeholder="メールアドレス">
                         </div>
                         <div class="form-group">
                             <label>クライアントに月末の通知を送る(※毎月の日にちを指定)</label>
-                            <select class="form-control" name="day_of_the_day"> 
+                            <select class="form-control" name="day_of_the_day">
                                 <option value="25">25日</option>
-                                <option value="27">27日</option>
+                                <option value="27">27日</option>   
                             </select>
                         </div>
                         <div class="form-group">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label>文章</label>
-                            <textarea class="form-control" name="contents" rows="3">{{ $default_mail_setting->contents }}</textarea>
+                            <textarea class="form-control" name="contents" rows="3"></textarea>
                         </div>
                         <div class="form-group has-error">
                             <button type="submit" class="btn btn-lg btn-primary" name="mail_setting" value="mail_setting">編集</button>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="form-group">
                             <label>内容</label>
-                            <textarea class="form-control" rows="3" name="contents" placeholder="記入した内容に加え、スタッフの労働時間が記述されます。">{{ $detault_line_setting->contents }}</textarea>
+                            <textarea class="form-control" rows="3" name="contents" placeholder="記入した内容に加え、スタッフの労働時間が記述されます。"></textarea>
                         </div>
                         <div class="form-group has-error">
                             <button type="submit" class="btn btn-lg btn-primary" name="line_setting" value="line_setting">編集</button>

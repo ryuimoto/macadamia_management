@@ -40,6 +40,7 @@ class ShiftPetternController extends Controller
 
     public function branchPost(Request $request)
     {
+
         $username = new LoggedInUser;
 
         $request->validate([

@@ -37,11 +37,25 @@
                                 <input class="form-control" type="email" name="email" value="{{ $user->email }}">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-lg btn-success">編集</button>
+                        @if (isset($user->line_user_id))
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Lineアカウント</label>
+                                <div class="col-md-10">
+                                    <h5>{{ $user->line_displayname }}</h5>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">LineユーザーID</label>
+                                <div class="col-md-10">
+                                    <h5>{{ $user->line_user_id }}</h5>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-lg btn-success">編集</button>
+                                </div>
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>

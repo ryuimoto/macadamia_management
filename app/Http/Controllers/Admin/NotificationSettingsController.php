@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use LINE\LINEBot;
 use LINE\LINEBot\Event\MessageEvent\TextMessage;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use LINE\LINEBot\MessageBuilder;
 use Mail;
 use Carbon\Carbon;
 
@@ -24,8 +25,8 @@ class NotificationSettingsController extends Controller
         $default_mail_setting = MailNotification::first();
 
         return view('admin.notification_settings')->with([
-            'detault_line_setting' => $detault_line_setting,
-            'default_mail_setting' => $default_mail_setting,
+            'detault_line_settings' => $detault_line_setting,
+            'default_mail_settings' => $default_mail_setting,
         ]);
     }
 
@@ -51,8 +52,7 @@ class NotificationSettingsController extends Controller
 
         if(isset($request->send_working_hours))
         {
-            $carbon = new Carbon('2020-04-01');
-            $today = new Carbon();
+            $applicable_date = new Carbon();
 
             $users = User::get();
 
@@ -64,10 +64,10 @@ class NotificationSettingsController extends Controller
             {
                 $result = 0;
     
-                $shifts = Shift::where('user_id',$key+1)
-                ->whereYear('date','=',$carbon->year)
-                ->whereMonth('date','=',$carbon->month)
-                ->where('date','<',$today)->get();
+                $shifts = Shift::where('user_id',$user->id)
+                ->whereYear('date','=',$applicable_date->year)
+                ->whereMonth('date','=',$applicable_date->month)
+                ->where('date','<',$applicable_date->parse())->get();
     
                 $working_days[] = $shifts->count();
     
@@ -80,7 +80,7 @@ class NotificationSettingsController extends Controller
             }
 
             $data = '';
-            $greeting = "お疲れ様です。\n".$carbon->year."年".$carbon->month."月の出勤簿のデータを送ります。\n\n";
+            $greeting = "お疲れ様です。\n".$applicable_date->year."年".$applicable_date->month."月の出勤簿のデータを送ります。\n\n";
 
             foreach($users as $key => $user)
             {
@@ -98,7 +98,7 @@ class NotificationSettingsController extends Controller
             // $response = $bot->pushMessage('U7f79978a6766f639f7a008015a601300', $textMessageBuilder); // 川内さん
 
         }else{
-            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($request->line_text);
+            $textMessageBuilder = new TextMessageBuilder($request->line_text);
 
             $response = $bot->pushMessage('U43acfcbc373087f4de9afd6573c91e9e', $textMessageBuilder);
         }
@@ -154,5 +154,4 @@ class NotificationSettingsController extends Controller
 
         return back();
     }
-    
 }
