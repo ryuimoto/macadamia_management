@@ -3,6 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use LINE\LINEBot;
+use LINE\LINEBot\Event\MessageEvent\TextMessage;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use LINE\LINEBot\MessageBuilder;
+use Carbon\Carbon;
+
+use App\User;
+use App\Shift;
+use App\SuperVisor;
 
 class SuperVisorLineCommand extends Command
 {
@@ -37,6 +46,20 @@ class SuperVisorLineCommand extends Command
      */
     public function handle()
     {
-        //
+        $carbon = new Carbon();
+
+        $httpClient = new CurlHTTPClient(config('line.line-access-token'));
+        $bot = new LINEBot($httpClient, ['channelSecret' => config('line.line-channel-secret')]);
+
+        $super_virsors = SuperVisor::where('line_notification',true)->get();
+
+        foreach($super_virsors as $super_virsor)
+        {
+            if($super_virsor->line_notification)
+            {
+                
+            }
+        }
+
     }
 }

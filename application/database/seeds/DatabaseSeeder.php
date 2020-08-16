@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminsTableSeeder::class);
         $this->call(LineNotificationsTableSeeder::class);
         $this->call(MailNotificationsTableSeeder::class);
-        $this->call(ShiftsTableSeeder::class);
+        // $this->call(ShiftsTableSeeder::class);
     }
 }
